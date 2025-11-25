@@ -1,0 +1,78 @@
+<div class="dashboard-layout">
+
+  <div class="main">
+    <main class="content">
+
+      <h2>Listado de órdenes de gasto</h2>
+
+      <table mat-table [dataSource]="dataSource" class="tabla mat-elevation-z1">
+
+        <ng-container matColumnDef="estatus">
+          <th mat-header-cell *matHeaderCellDef>Estatus</th>
+          <td mat-cell *matCellDef="let s">{{ s.estado?.desc_corta }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="solicitante">
+          <th mat-header-cell *matHeaderCellDef>Solicitante</th>
+          <td mat-cell *matCellDef="let s">{{ s.usuario }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="cif">
+          <th mat-header-cell *matHeaderCellDef>CIF</th>
+          <td mat-cell *matCellDef="let s">{{ s.cif_prov_final }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="proveedor">
+          <th mat-header-cell *matHeaderCellDef>Proveedor</th>
+          <td mat-cell *matCellDef="let s">{{ s.nombre_prov_final }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="importe">
+          <th mat-header-cell *matHeaderCellDef>Importe</th>
+          <td mat-cell *matCellDef="let s">{{ s.importe | currency:'EUR':'symbol':'1.0-0' }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      </table>
+
+      <section class="stats">
+
+        <div class="chart">
+          <h3>Evolución del gasto</h3>
+          <canvas id="gastoChart"></canvas>
+        </div>
+
+        <div class="cards">
+
+          <div class="kpi total">
+            💰 Total gasto
+            <br>
+            <span>{{ totalGasto | currency:'EUR':'symbol':'1.0-0' }}</span>
+          </div>
+
+          <div class="kpi mensual">
+            📅 Gasto mensual
+            <br>
+            <span>{{ gastoMensual | currency:'EUR':'symbol':'1.0-0' }}</span>
+          </div>
+
+          <div class="kpi activas">
+            📄 Órdenes activas
+            <br>
+            <span>{{ ordenesActivas }}</span>
+          </div>
+
+          <div class="kpi proveedor">
+            🏆 Top proveedor
+            <br>
+            <span>{{ topProveedor }} ({{ topProveedorImporte | currency:'EUR':'symbol':'1.0-0' }})</span>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>

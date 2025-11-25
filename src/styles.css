@@ -1,0 +1,22 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-layout {
+  flex: 1;
+  display: flex;
+  background: white;
+}
+
+.page-content {
+  flex: 1;
+  padding: 20px;
+  background: white;
+}

@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+/* Layout de toda la app */
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
+
+

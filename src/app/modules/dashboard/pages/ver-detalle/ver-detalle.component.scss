@@ -1,0 +1,43 @@
+.detalle-container {
+  max-width: 850px;
+  margin: 40px auto;
+}
+
+.header-detalle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.header-detalle h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.editar-link {
+  font-size: 14px;
+  color: #5F2EEA;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.full-width {
+  grid-column: 1 / 4;
+}
+
+.guardar-btn {
+  margin-top: 25px;
+  background-color: #5F2EEA;
+  color: white;
+  padding: 8px 20px;
+}

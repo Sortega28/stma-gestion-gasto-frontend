@@ -1,0 +1,22 @@
+<header class="header">
+
+  <div class="user-info" *ngIf="user$ | async as user">
+    <span class="username">{{ user.name }}</span>
+
+    <button mat-icon-button
+            (click)="logout()"
+            matTooltip="Cerrar sesión"
+            class="logout-btn">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+
+  <div class="logo-container">
+    <img
+      src="../../../../../assets/Imagenes/logo_color.png"
+      alt="Logo"
+      class="logo"
+    />
+  </div>
+
+</header>

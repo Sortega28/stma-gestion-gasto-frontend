@@ -1,0 +1,35 @@
+:root {
+  --azul-ibm: #0f62fe;
+  --morado-ibm: #4B00FF;
+}
+
+.dashboard-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: white;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+
+.layout-container {
+  display: flex;
+  width: 100%;
+  flex: 1;
+  background: white;
+}
+
+
+app-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: #f7f7f7;
+  border-right: 1px solid #e5e5e5;
+}
+
+.layout-content {
+  flex-grow: 1;
+  padding: 24px;
+  background: white;
+  overflow-y: auto;
+}

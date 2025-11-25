@@ -1,0 +1,56 @@
+
+.sidebar {
+  width: 220px;                           
+  background: #f5f7fb;                    
+  padding-top: 10px;
+  border-right: 1px solid #d6d6d6;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;                              
+  padding: 14px 18px;
+  
+  color: #333;
+  cursor: pointer;
+
+  border-radius: 8px;                   
+  margin: 6px 10px;
+  
+  font-size: 0.95rem;
+  font-weight: 500;
+
+  transition: background 0.25s, color 0.25s, padding-left 0.25s;
+}
+
+.menu-item:hover {
+  background: #3D52FF;                    
+  padding-left: 24px;                     
+
+.menu-item mat-icon {
+  font-size: 22px;
+  color: #4B4B4B;
+  transition: color 0.25s;
+}
+
+.menu-item.active {
+  background: #4B00FF;
+  color: white;
+  font-weight: 600;
+  padding-left: 24px;
+}
+
+.menu-item.active mat-icon {
+  color: white;
+}
+
+.sidebar ul,
+.sidebar li {
+  all: unset;
+}
+}

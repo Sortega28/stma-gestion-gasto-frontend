@@ -1,0 +1,56 @@
+<div class="login-page">
+  <header class="login-header">
+    <img src="assets/Imagenes/logo_color.png" alt="Logo del Departamento" class="logo" />
+  </header>
+
+  <main class="login-main">
+    <div class="login-card">
+      <h1>Iniciar sesión</h1>
+      <p>Accede a tu cuenta</p>
+
+      <form (ngSubmit)="onLogin()">
+        <input
+          type="text"
+          placeholder="Usuario o correo electrónico"
+          [(ngModel)]="email"
+          name="email"
+          required
+        />
+        <div class="password-wrapper">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            placeholder="Contraseña"
+            [(ngModel)]="password"
+            name="password"
+            required
+          />
+          <button type="button" (click)="showPassword = !showPassword" class="eye-btn">
+            <span class="material-icons">{{ showPassword ? 'visibility_off' : 'visibility' }}</span>
+          </button>
+        </div>
+
+        <label class="remember">
+          <input type="checkbox" /> Recordar usuario
+        </label>
+
+        <button type="submit" class="btn-login">Iniciar sesión</button>
+
+        <a href="#" class="forgot">¿Olvidaste tu contraseña?</a>
+      </form>
+    </div>
+  </main>
+
+  <footer class="login-footer">
+    <div class="social-icons">
+      <i class="fa-brands fa-linkedin"></i>
+      <i class="fa-brands fa-facebook"></i>
+      <i class="fa-brands fa-instagram"></i>
+      <i class="fa-brands fa-x-twitter"></i>
+    </div>
+    <div class="footer-links">
+      <a href="#">Política de Privacidad</a>
+      <a href="#">Política de cookies</a>
+      <a href="#">Aviso Legal</a>
+    </div>
+  </footer>
+</div>

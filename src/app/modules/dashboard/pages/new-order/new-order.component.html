@@ -1,0 +1,82 @@
+<div class="new-order-container">
+
+  <h2>Nueva orden de gasto</h2>
+
+  <form [formGroup]="form" class="form-grid">
+
+    <!-- Nº orden -->
+    <mat-form-field appearance="outline">
+      <mat-label>Nº orden de gasto</mat-label>
+      <input matInput formControlName="numero" readonly>
+    </mat-form-field>
+
+    <!-- Solicitante -->
+    <mat-form-field appearance="outline">
+      <mat-label>Solicitante</mat-label>
+      <input matInput formControlName="solicitante"
+             [disabled]="!roleService.puedeCrearOrdenes()">
+    </mat-form-field>
+
+    <!-- Proyecto -->
+    <mat-form-field appearance="outline">
+      <mat-label>Proyecto*</mat-label>
+      <mat-select formControlName="proyecto"
+                  [disabled]="!roleService.puedeCrearOrdenes()">
+        <mat-option *ngFor="let p of proyectos" [value]="p">{{ p }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- CIF -->
+    <mat-form-field appearance="outline">
+      <mat-label>CIF*</mat-label>
+      <input matInput formControlName="cif"
+             [disabled]="!roleService.puedeCrearOrdenes()">
+    </mat-form-field>
+
+    <!-- Proveedor -->
+    <mat-form-field appearance="outline">
+      <mat-label>Proveedor*</mat-label>
+      <input matInput formControlName="proveedor"
+             [disabled]="!roleService.puedeCrearOrdenes()">
+    </mat-form-field>
+
+    <!-- Concepto -->
+    <mat-form-field appearance="outline">
+      <mat-label>Concepto*</mat-label>
+      <input matInput formControlName="concepto"
+             [disabled]="!roleService.puedeCrearOrdenes()">
+    </mat-form-field>
+
+    <!-- Importe -->
+    <mat-form-field appearance="outline">
+      <mat-label>Importe*</mat-label>
+      <input matInput formControlName="importe"
+             [disabled]="!roleService.puedeCrearOrdenes()">
+    </mat-form-field>
+
+    <!-- Objeto -->
+    <mat-form-field appearance="outline">
+      <mat-label>Objeto*</mat-label>
+      <mat-select formControlName="objeto"
+                  [disabled]="!roleService.puedeCrearOrdenes()">
+        <mat-option *ngFor="let o of objetos" [value]="o">{{ o }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Observaciones -->
+    <div class="observaciones-wrapper">
+      <label>Observaciones</label>
+      <textarea formControlName="observaciones" maxlength="100"
+                [disabled]="!roleService.puedeCrearOrdenes()"></textarea>
+    </div>
+
+  </form>
+
+  <button mat-raised-button color="primary"
+          class="btn-save"
+          *ngIf="roleService.puedeCrearOrdenes()"
+          (click)="guardar()">
+    Guardar&nbsp;&nbsp;<mat-icon>add</mat-icon>
+  </button>
+
+</div>

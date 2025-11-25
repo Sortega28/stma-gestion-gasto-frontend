@@ -1,0 +1,109 @@
+<div class="reportes-container"> 
+
+  <h2>Reportes de gasto</h2>
+
+  <section class="filtros">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Desde</mat-label>
+      <input matInput type="date" [(ngModel)]="filtros.desde">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Hasta</mat-label>
+      <input matInput type="date" [(ngModel)]="filtros.hasta">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Objeto</mat-label>
+      <mat-select [(ngModel)]="filtros.objeto">
+        <mat-option value="">Todos</mat-option>
+        <mat-option value="Servicio">Servicio</mat-option>
+        <mat-option value="Suministro">Suministro</mat-option>
+        <mat-option value="Obra">Obra</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Proveedor</mat-label>
+      <input matInput placeholder="Nombre proveedor" [(ngModel)]="filtros.proveedor">
+    </mat-form-field>
+
+    <div class="filtros-botones">
+      <button mat-raised-button color="primary" (click)="aplicarFiltros()">
+        Aplicar filtros
+      </button>
+      <button mat-stroked-button color="primary" (click)="limpiarFiltros()">
+        Limpiar
+      </button>
+    </div>
+
+  </section>
+
+  <!-- EXPORTACIÓN (solo auditor/admin)-->
+  <section class="exportar" *ngIf="roleService.puedeExportarReportes()">
+
+    <button mat-raised-button color="accent" (click)="exportarPdf()">
+      📄 Exportar PDF
+    </button>
+
+    <button mat-raised-button color="primary" (click)="exportarExcel()">
+      📊 Exportar Excel
+    </button>
+
+  </section>
+
+  <!-- Mensaje para USERS -->
+  <section class="exportar" *ngIf="roleService.esConsulta()">
+    <p style="color: #555; font-size: 14px; margin-top: 10px;">
+      Solo auditores y administradores pueden exportar reportes.
+    </p>
+  </section>
+
+  <section class="graficas">
+
+    <div class="grafica">
+      <h3>Gasto por objeto</h3>
+      <canvas id="chartObjeto"></canvas>
+    </div>
+
+    <div class="grafica">
+      <h3>Top proveedores</h3>
+      <canvas id="chartProveedor"></canvas>
+    </div>
+
+  </section>
+
+  <section class="tabla-estado">
+
+    <h3>Resumen por estado</h3>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z1 tabla">
+
+      <!-- Estado -->
+      <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef>Estado</th>
+        <td mat-cell *matCellDef="let e">{{ e.desc }}</td>
+      </ng-container>
+
+      <!-- Cantidad -->
+      <ng-container matColumnDef="cantidad">
+        <th mat-header-cell *matHeaderCellDef>Nº órdenes</th>
+        <td mat-cell *matCellDef="let e">{{ e.cantidad }}</td>
+      </ng-container>
+
+      <!-- Total -->
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef>Total (€)</th>
+        <td mat-cell *matCellDef="let e">{{ e.total | currency:'EUR' }}</td>
+      </ng-container>
+
+      <!-- Header + Rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    </table>
+
+  </section>
+
+</div>

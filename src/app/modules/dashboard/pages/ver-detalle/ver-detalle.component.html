@@ -1,0 +1,110 @@
+<div class="contenedor">
+
+  <!-- ACCIONES SUPERIORES -->
+  <div class="cabecera-acciones">
+
+    <!-- EDITAR (solo auditor/admin) -->
+    <button mat-button color="primary"
+            *ngIf="!modoEdicion && roleService.puedeEditarSolicitud()"
+            (click)="activarEdicion()">
+      <mat-icon>edit</mat-icon> Editar
+    </button>
+
+    <!-- CANCELAR EDICIÓN (solo auditor/admin) -->
+    <button mat-button color="warn"
+            *ngIf="modoEdicion && roleService.puedeEditarSolicitud()"
+            (click)="cancelarEdicion()">
+      <mat-icon>close</mat-icon> Cancelar
+    </button>
+
+  </div>
+
+  <!-- FORMULARIO -->
+  <form class="form-grid">
+
+    <!-- Nº ORDEN -->
+    <mat-form-field appearance="outline">
+      <mat-label>Nº orden de gasto</mat-label>
+      <input matInput [(ngModel)]="orden.num_OG" name="num_OG"
+             [disabled]="!modoEdicion || !roleService.puedeEditarSolicitud()">
+    </mat-form-field>
+
+    <!-- SOLICITANTE -->
+    <mat-form-field appearance="outline">
+      <mat-label>Solicitante</mat-label>
+      <input matInput [(ngModel)]="orden.usuario" name="usuario"
+             [disabled]="!modoEdicion || !roleService.puedeEditarSolicitud()">
+    </mat-form-field>
+
+    <!-- PROYECTO -->
+    <mat-form-field appearance="outline">
+      <mat-label>Proyecto*</mat-label>
+      <mat-select [(ngModel)]="orden.codigo_proyecto" name="codigo_proyecto"
+                  [disabled]="!modoEdicion || !roleService.puedeEditarSolicitud()">
+        <mat-option *ngFor="let p of proyectos" [value]="p">
+          {{ p }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- CIF -->
+    <mat-form-field appearance="outline">
+      <mat-label>CIF*</mat-label>
+      <input matInput [(ngModel)]="orden.cif_prov_final" name="cif_prov_final"
+             [disabled]="!modoEdicion || !roleService.puedeEditarSolicitud()">
+    </mat-form-field>
+
+    <!-- PROVEEDOR -->
+    <mat-form-field appearance="outline">
+      <mat-label>Proveedor*</mat-label>
+      <input matInput [(ngModel)]="orden.nombre_prov_final" name="nombre_prov_final"
+             [disabled]="!modoEdicion || !roleService.puedeEditarSolicitud()">
+    </mat-form-field>
+
+    <!-- CONCEPTO -->
+    <mat-form-field appearance="outline">
+      <mat-label>Concepto*</mat-label>
+      <input matInput [(ngModel)]="orden.concepto" name="concepto"
+             [disabled]="!modoEdicion || !roleService.puedeEditarSolicitud()">
+    </mat-form-field>
+
+    <!-- IMPORTE -->
+    <mat-form-field appearance="outline">
+      <mat-label>Importe*</mat-label>
+      <input matInput type="number" [(ngModel)]="orden.importe" name="importe"
+             [disabled]="!modoEdicion || !roleService.puedeEditarSolicitud()">
+    </mat-form-field>
+
+    <!-- OBJETO -->
+    <mat-form-field appearance="outline">
+      <mat-label>Objeto*</mat-label>
+      <mat-select [(ngModel)]="orden.objeto" name="objeto"
+                  [disabled]="!modoEdicion || !roleService.puedeEditarSolicitud()">
+        <mat-option *ngFor="let o of objetos" [value]="o">
+          {{ o }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- OBSERVACIONES -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Observaciones</mat-label>
+      <textarea matInput rows="4"
+                [(ngModel)]="orden.observaciones" name="observaciones"
+                [disabled]="!modoEdicion || !roleService.puedeEditarSolicitud()">
+      </textarea>
+    </mat-form-field>
+
+  </form>
+
+  <!-- GUARDAR CAMBIOS (solo auditor/admin) -->
+  <div class="acciones-guardar"
+       *ngIf="modoEdicion && roleService.puedeEditarSolicitud()">
+
+    <button mat-raised-button color="primary" (click)="guardarCambios()">
+      Guardar <mat-icon>save</mat-icon>
+    </button>
+
+  </div>
+
+</div>
