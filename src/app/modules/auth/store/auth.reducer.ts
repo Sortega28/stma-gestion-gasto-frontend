@@ -29,10 +29,10 @@ export const authReducer = createReducer(
   })),
 
   // LOGIN SUCCESS
-  on(AuthActions.loginSuccess, (state, { user, token, role }) => ({
+  on(AuthActions.loginSuccess, (state, { user, access_token, role }) => ({
     ...state,
     user,
-    token,
+    token: access_token,    
     role,
     loading: false,
     error: null,
@@ -42,7 +42,7 @@ export const authReducer = createReducer(
   on(AuthActions.restoreSession, (state, { user, token, role }) => ({
     ...state,
     user,
-    token,
+    token,                  
     role,
     loading: false,
     error: null,

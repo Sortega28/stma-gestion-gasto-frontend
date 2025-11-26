@@ -9,7 +9,7 @@ export const login = createAction(
 
 export const loginSuccess = createAction(
   '[Auth] Login Success',
-  props<{ user: User; token: string; role: string }>()
+  props<{ user: User; access_token: string; role: string }>()
 );
 
 export const loginFailure = createAction(
@@ -20,7 +20,7 @@ export const loginFailure = createAction(
 // LOGOUT
 export const logout = createAction('[Auth] Logout');
 
-// Restaurar sesión desde localStorage
+// RESTAURAR SESIÓN DESDE LOCALSTORAGE
 export const restoreSession = createAction(
   '[Auth] Restore Session',
   props<{ user: User | null; token: string; role: string }>()
