@@ -11,7 +11,7 @@ import { environment } from '../../../../../environments/environment';
 })
 export class AlertasComponent implements OnInit {
 
-  apiUrl = environment.apiUrl;  // 🔥 YA NO ES LOCALHOST
+  apiUrl = environment.apiUrl;  
   loading = false;
 
   dataSource = new MatTableDataSource<any>([]);
