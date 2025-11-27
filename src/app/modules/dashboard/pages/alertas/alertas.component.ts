@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { HttpClient } from '@angular/common/http';
 import { RoleService } from '../../../auth/core/services/role.service';
+import { environment } from '../../../../../environments/environment'; 
 
 @Component({
   selector: 'app-alertas',
@@ -10,8 +11,7 @@ import { RoleService } from '../../../auth/core/services/role.service';
 })
 export class AlertasComponent implements OnInit {
 
-
-  apiUrl = 'http://localhost:8000/api';
+  apiUrl = environment.apiUrl;  // 🔥 YA NO ES LOCALHOST
   loading = false;
 
   dataSource = new MatTableDataSource<any>([]);
@@ -19,12 +19,11 @@ export class AlertasComponent implements OnInit {
   cols: string[] = [
     'proveedor',
     'objeto',
-    'importe',  
+    'importe',
     'umbral',
     'tipo_alerta',
     'acciones'
   ];
-
 
   page = 1;
   perPage = 10;
@@ -63,36 +62,23 @@ export class AlertasComponent implements OnInit {
       });
   }
 
-
   cargarAlertas() {
     this.loading = true;
 
     const params: any = {
-      page: this.page.toString(),
-      perPage: this.perPage.toString(),
+      page: this.page,
+      perPage: this.perPage,
     };
 
-    // Aplicar filtros solo si tienen valor
-    if (this.filtros.proveedor.trim()) {
-      params.proveedor = this.filtros.proveedor.trim();
-    }
-
-    if (this.filtros.objeto) {
-      params.objeto = this.filtros.objeto;
-    }
-
-    if (this.filtros.tipo_alerta) {
-      params.tipo_alerta = this.filtros.tipo_alerta;
-    }
-
-    if (this.filtros.noRevisadas) {
-      params.noRevisadas = '1';
-    }
+    if (this.filtros.proveedor.trim()) params.proveedor = this.filtros.proveedor.trim();
+    if (this.filtros.objeto) params.objeto = this.filtros.objeto;
+    if (this.filtros.tipo_alerta) params.tipo_alerta = this.filtros.tipo_alerta;
+    if (this.filtros.noRevisadas) params.noRevisadas = '1';
 
     this.http.get<any>(`${this.apiUrl}/alertas`, { params })
       .subscribe({
         next: (resp) => {
-          this.dataSource.data = resp.data;   
+          this.dataSource.data = resp.data;
           this.total = resp.total;
           this.loading = false;
         },
