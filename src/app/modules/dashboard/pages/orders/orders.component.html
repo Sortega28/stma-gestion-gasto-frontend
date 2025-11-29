@@ -2,7 +2,6 @@
 
   <h2>Listado de órdenes de gasto</h2>
 
-  <!-- NUEVA ORDEN (solo auditor y admin) -->
   <div class="actions">
     <a class="nuevo-link"
        *ngIf="roleService.puedeCrearOrdenes()"
@@ -11,7 +10,6 @@
     </a>
   </div>
 
-  <!-- VALIDAR MASIVO (solo auditor y admin) -->
   <div class="validate-bar" *ngIf="roleService.puedeValidar()">
     <button mat-raised-button color="primary"
             (click)="validarSeleccionadas()"
@@ -21,56 +19,70 @@
   </div>
 
   <div class="tabla-wrapper">
-  <table mat-table [dataSource]="dataSource" class="tabla mat-elevation-z2">
-    <ng-container matColumnDef="validar" *ngIf="roleService.puedeValidar()">
-      <th mat-header-cell *matHeaderCellDef>
-        <mat-checkbox (change)="toggleSeleccionTodas($event)"></mat-checkbox>
-      </th>
-      <td mat-cell *matCellDef="let row">
-        <mat-checkbox
-          [checked]="estaSeleccionada(row.idsolicitudgasto)"
-          (change)="toggleSeleccion(row)">
-        </mat-checkbox>
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="estatus">
-      <th mat-header-cell *matHeaderCellDef>Estatus</th>
-      <td mat-cell *matCellDef="let row">
-        {{ row.estado_nombre ?? row.estado_solicitud_gasto?.desc_corta }}
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="solicitante">
-      <th mat-header-cell *matHeaderCellDef>Solicitante</th>
-      <td mat-cell *matCellDef="let row">{{ row.usuario }}</td>
-    </ng-container>
-    <ng-container matColumnDef="cif">
-      <th mat-header-cell *matHeaderCellDef>CIF</th>
-      <td mat-cell *matCellDef="let row">{{ row.cif_prov_final }}</td>
-    </ng-container>
-    <ng-container matColumnDef="proveedor">
-      <th mat-header-cell *matHeaderCellDef>Proveedor</th>
-      <td mat-cell *matCellDef="let row">{{ row.nombre_prov_final }}</td>
-    </ng-container>
-    <ng-container matColumnDef="importe">
-      <th mat-header-cell *matHeaderCellDef>Importe</th>
-      <td mat-cell *matCellDef="let row">{{ row.importe }}</td>
-    </ng-container>
-    <ng-container matColumnDef="acciones">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let row">
-        <a class="detalle-link" (click)="verDetalle(row.idsolicitudgasto)">
-          Ver detalle
-        </a>
-      </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  </div>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+
+      <ng-container matColumnDef="validar" *ngIf="roleService.puedeValidar()">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="toggleSeleccionTodas($event)"></mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox
+            [checked]="estaSeleccionada(row.idsolicitudgasto)"
+            (change)="toggleSeleccion(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="estatus">
+        <th mat-header-cell *matHeaderCellDef>Estatus</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.estado_nombre ?? row.estado_solicitud_gasto?.desc_corta }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="solicitante">
+        <th mat-header-cell *matHeaderCellDef>Solicitante</th>
+        <td mat-cell *matCellDef="let row">{{ row.usuario }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cif">
+        <th mat-header-cell *matHeaderCellDef>CIF</th>
+        <td mat-cell *matCellDef="let row">{{ row.cif_prov_final }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="proveedor">
+        <th mat-header-cell *matHeaderCellDef>Proveedor</th>
+        <td mat-cell *matCellDef="let row">{{ row.nombre_prov_final }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="importe">
+        <th mat-header-cell *matHeaderCellDef>Importe</th>
+        <td mat-cell *matCellDef="let row">{{ row.importe }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+          <a class="detalle-link" (click)="verDetalle(row.idsolicitudgasto)">
+            Ver detalle
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+  </div> 
 
   <div class="filtros-container">
+
     <h3 class="titulo-filtros">Búsqueda avanzada</h3>
+
     <div class="filtros-grid">
+
       <mat-form-field class="filtro-item" appearance="outline">
         <mat-label>Concepto</mat-label>
         <mat-select>
@@ -94,6 +106,7 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+
       <mat-form-field class="filtro-item" appearance="outline">
         <mat-label>Operador</mat-label>
         <mat-select>
@@ -108,14 +121,17 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+
       <mat-form-field class="filtro-item" appearance="outline">
         <mat-label>Texto</mat-label>
         <input matInput [(ngModel)]="filtroTexto">
       </mat-form-field>
 
       <button class="btn-buscar" (click)="aplicarFiltros()">
-        <mat-icon>search</mat-icon> Buscar
+        <mat-icon>search</mat-icon>
+        Buscar
       </button>
+
     </div>
 
     <div class="paginacion">
@@ -124,13 +140,14 @@
               (click)="paginaAnterior()">
         <mat-icon>chevron_left</mat-icon> Anterior
       </button>
-      <span class="page-info">
-        Página {{ page }} de {{ totalPaginas }}
-      </span>
-      <button class="btn-page"
-              (click)="paginaSiguiente()">
+
+      <span class="page-info">Página {{ page }} de {{ totalPaginas }}</span>
+
+      <button class="btn-page" (click)="paginaSiguiente()">
         Siguiente <mat-icon>chevron_right</mat-icon>
       </button>
     </div>
+
   </div>
+
 </div>

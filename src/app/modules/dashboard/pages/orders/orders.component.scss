@@ -28,11 +28,6 @@ h2 {
   margin-bottom: 16px;
 }
 
-/* --------------------------------------------- */
-/* TABLA RESPONSIVE REAL */
-/* --------------------------------------------- */
-
-/* wrapper externo */
 .tabla-wrapper {
   width: 100%;
   overflow-x: auto;
@@ -41,7 +36,6 @@ h2 {
   border-radius: 8px;
 }
 
-/* tabla vuelve a ser tabla */
 table {
   width: 100%;
   background: white;
@@ -51,10 +45,9 @@ table {
   display: table;
 }
 
-/* celdas ahora pueden romper línea */
 .mat-header-cell,
 .mat-cell {
-  white-space: normal !important;     /* 🔥 Very important */
+  white-space: normal !important;     
   word-wrap: break-word;
   word-break: break-word;
   padding: 12px 16px !important;
@@ -70,9 +63,6 @@ table {
   margin-bottom: 30px;
 }
 
-/* --------------------------------------------- */
-/* FILTROS */
-/* --------------------------------------------- */
 
 .filtros-container {
   background: #ffffff;
@@ -124,9 +114,6 @@ table {
   transform: translateY(-1px);
 }
 
-/* --------------------------------------------- */
-/* PAGINACIÓN */
-/* --------------------------------------------- */
 
 .paginacion {
   margin-top: 25px;
@@ -167,9 +154,6 @@ table {
   text-align: center;
 }
 
-/* --------------------------------------------- */
-/* RESPONSIVE */
-/* --------------------------------------------- */
 
 @media (max-width: 1024px) {
   .filtros-grid {

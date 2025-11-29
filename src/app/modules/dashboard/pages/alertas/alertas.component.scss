@@ -6,9 +6,7 @@
   color: #161616;
 }
 
-/* --------------------------------------------- */
-/* TITULO */
-/* --------------------------------------------- */
+
 h2 {
   margin-bottom: 24px;
   font-size: 24px;
@@ -16,17 +14,13 @@ h2 {
   color: #161616;
 }
 
-/* --------------------------------------------- */
-/* REGENERAR */
-/* --------------------------------------------- */
+
 .regenerar-wrapper {
   margin-bottom: 20px;
   display: flex;
 }
 
-/* --------------------------------------------- */
-/* LOADING */
-/* --------------------------------------------- */
+
 .loading {
   font-size: 16px;
   font-weight: 600;
@@ -34,9 +28,7 @@ h2 {
   padding: 12px 0;
 }
 
-/* --------------------------------------------- */
-/* FILTROS */
-/* --------------------------------------------- */
+
 .filtros {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -62,11 +54,6 @@ h2 {
   }
 }
 
-/* --------------------------------------------- */
-/* TABLA RESPONSIVE REAL */
-/* --------------------------------------------- */
-
-/* WRAPPER CORRECTO DEL SCROLL */
 .tabla-wrapper {
   width: 100%;
   overflow-x: auto;
@@ -75,19 +62,18 @@ h2 {
   border-radius: 8px;
 }
 
-/* TABLA VUELVE A SER TABLA */
+
 table {
   width: 100%;
   border-collapse: collapse;
   background: #ffffff;
-  table-layout: auto;     /* Se adapta al contenido */
-  display: table;         /* 🔥 Esto soluciona tu problema */
+  table-layout: auto;     
+  display: table;         
 }
 
-/* CELDAS RESPONSIVE */
 .mat-header-cell,
 .mat-cell {
-  white-space: normal !important;   /* 🔥 Permite saltos de línea */
+  white-space: normal !important;   
   word-wrap: break-word;
   word-break: break-word;
   padding: 12px;
@@ -107,7 +93,7 @@ table {
   border-bottom: 1px solid #e0e0e0;
 }
 
-/* Hover */
+
 tr.mat-row:hover {
   background: #f2f4f8 !important;
 }
@@ -120,9 +106,7 @@ tr.mat-row:hover {
   background: #ffd7d9 !important;
 }
 
-/* --------------------------------------------- */
-/* BADGE */
-/* --------------------------------------------- */
+
 .badge-revisada {
   background: #198038;
   color: white;
@@ -132,9 +116,6 @@ tr.mat-row:hover {
   font-weight: 600;
 }
 
-/* --------------------------------------------- */
-/* BOTONES */
-/* --------------------------------------------- */
 button[mat-button],
 button[mat-raised-button],
 button[mat-stroked-button] {
@@ -169,7 +150,7 @@ button[mat-stroked-button]:hover {
   background: #e5e5e5 !important;
 }
 
-/* Botón danger */
+
 .carbon-btn-danger {
   background: #da1e28;
   color: #ffffff;
@@ -200,9 +181,7 @@ button[mat-stroked-button]:hover {
   cursor: not-allowed;
 }
 
-/* --------------------------------------------- */
-/* PAGINACIÓN */
-/* --------------------------------------------- */
+
 .paginacion {
   margin-top: 24px;
   display: flex;
@@ -220,18 +199,14 @@ button[mat-stroked-button]:hover {
   }
 }
 
-/* --------------------------------------------- */
-/* RESPONSIVE BREAKPOINTS */
-/* --------------------------------------------- */
 
-/* 3 columnas */
 @media (max-width: 1100px) {
   .filtros {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* 2 columnas */
+
 @media (max-width: 850px) {
   .filtros {
     grid-template-columns: repeat(2, 1fr);
@@ -242,7 +217,7 @@ button[mat-stroked-button]:hover {
   }
 }
 
-/* 1 columna */
+
 @media (max-width: 650px) {
   .alertas-container {
     padding: 16px;
@@ -282,7 +257,7 @@ button[mat-stroked-button]:hover {
   }
 }
 
-/* Más pequeño */
+
 @media (max-width: 480px) {
   .mat-header-cell,
   .mat-cell {
