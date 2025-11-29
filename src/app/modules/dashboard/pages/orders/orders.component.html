@@ -18,7 +18,8 @@
     </button>
   </div>
 
-  <div class="tabla-wrapper">
+  <!-- SOLO ESTE CONTENEDOR, SIN SCROLL -->
+  <div class="tabla">
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
 
@@ -75,7 +76,7 @@
 
     </table>
 
-  </div> 
+  </div>
 
   <div class="filtros-container">
 
@@ -86,55 +87,37 @@
       <mat-form-field class="filtro-item" appearance="outline">
         <mat-label>Concepto</mat-label>
         <mat-select>
-          <mat-option (click)="$event.stopPropagation()">
-            <mat-checkbox (change)="toggleConcepto('objeto')">Objeto</mat-checkbox>
-          </mat-option>
-          <mat-option (click)="$event.stopPropagation()">
-            <mat-checkbox (change)="toggleConcepto('cif')">CIF</mat-checkbox>
-          </mat-option>
-          <mat-option (click)="$event.stopPropagation()">
-            <mat-checkbox (change)="toggleConcepto('proveedor')">Proveedor</mat-checkbox>
-          </mat-option>
-          <mat-option (click)="$event.stopPropagation()">
-            <mat-checkbox (change)="toggleConcepto('importe')">Importe</mat-checkbox>
-          </mat-option>
-          <mat-option (click)="$event.stopPropagation()">
-            <mat-checkbox (change)="toggleConcepto('estado')">Estatus</mat-checkbox>
-          </mat-option>
-          <mat-option (click)="$event.stopPropagation()">
-            <mat-checkbox (change)="toggleConcepto('solicitante')">Solicitante</mat-checkbox>
-          </mat-option>
+          <mat-option><mat-checkbox (change)="toggleConcepto('objeto')">Objeto</mat-checkbox></mat-option>
+          <mat-option><mat-checkbox (change)="toggleConcepto('cif')">CIF</mat-checkbox></mat-option>
+          <mat-option><mat-checkbox (change)="toggleConcepto('proveedor')">Proveedor</mat-checkbox></mat-option>
+          <mat-option><mat-checkbox (change)="toggleConcepto('importe')">Importe</mat-checkbox></mat-option>
+          <mat-option><mat-checkbox (change)="toggleConcepto('estado')">Estatus</mat-checkbox></mat-option>
+          <mat-option><mat-checkbox (change)="toggleConcepto('solicitante')">Solicitante</mat-checkbox></mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field class="filtro-item" appearance="outline">
         <mat-label>Operador</mat-label>
         <mat-select>
-          <mat-option (click)="$event.stopPropagation()">
-            <mat-checkbox (change)="toggleLike('like')">Contiene (LIKE)</mat-checkbox>
-          </mat-option>
-          <mat-option (click)="$event.stopPropagation()">
-            <mat-checkbox (change)="toggleLike('>')">Mayor que (&gt;)</mat-checkbox>
-          </mat-option>
-          <mat-option (click)="$event.stopPropagation()">
-            <mat-checkbox (change)="toggleLike('<')">Menor que (&lt;)</mat-checkbox>
-          </mat-option>
+          <mat-option><mat-checkbox (change)="toggleLike('like')">Contiene (LIKE)</mat-checkbox></mat-option>
+          <mat-option><mat-checkbox (change)="toggleLike('>')">Mayor que (&gt;)</mat-checkbox></mat-option>
+          <mat-option><mat-checkbox (change)="toggleLike('<')">Menor que (&lt;)</mat-checkbox></mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field class="filtro-item" appearance="outline">
         <mat-label>Texto</mat-label>
-        <input matInput [(ngModel)]="filtroTexto">
+        <input matInput [(ngModel)]="filtroTexto" />
       </mat-form-field>
 
       <button class="btn-buscar" (click)="aplicarFiltros()">
-        <mat-icon>search</mat-icon>
-        Buscar
+        <mat-icon>search</mat-icon> Buscar
       </button>
 
     </div>
 
     <div class="paginacion">
+
       <button class="btn-page"
               [disabled]="page === 1"
               (click)="paginaAnterior()">
@@ -143,9 +126,11 @@
 
       <span class="page-info">Página {{ page }} de {{ totalPaginas }}</span>
 
-      <button class="btn-page" (click)="paginaSiguiente()">
+      <button class="btn-page"
+              (click)="paginaSiguiente()">
         Siguiente <mat-icon>chevron_right</mat-icon>
       </button>
+
     </div>
 
   </div>

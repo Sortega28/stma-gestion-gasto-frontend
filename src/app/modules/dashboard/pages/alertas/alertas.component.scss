@@ -4,8 +4,11 @@
   background: #ffffff;
   min-height: 100vh;
   color: #161616;
+  width: 100%;
+  box-sizing: border-box;
 }
 
+/* ------------------ TITULO ------------------ */
 
 h2 {
   margin-bottom: 24px;
@@ -14,12 +17,14 @@ h2 {
   color: #161616;
 }
 
+/* ------------------ BOTÓN REGENERAR ------------------ */
 
 .regenerar-wrapper {
   margin-bottom: 20px;
   display: flex;
 }
 
+/* ------------------ LOADING ------------------ */
 
 .loading {
   font-size: 16px;
@@ -28,6 +33,7 @@ h2 {
   padding: 12px 0;
 }
 
+/* ------------------ FILTROS ------------------ */
 
 .filtros {
   display: grid;
@@ -54,29 +60,29 @@ h2 {
   }
 }
 
-.tabla-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  margin-top: 10px;
-  border-radius: 8px;
-}
+/* ------------------ TABLA (IGUAL QUE REPORTES) ------------------ */
 
+.tabla {
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden; /* 👈 CLAVE */
+  margin-top: 10px;
+}
 
 table {
   width: 100%;
   border-collapse: collapse;
   background: #ffffff;
-  table-layout: auto;     
-  display: table;         
+  table-layout: auto;
 }
 
 .mat-header-cell,
 .mat-cell {
-  white-space: normal !important;   
-  word-wrap: break-word;
+  white-space: normal !important;
   word-break: break-word;
   padding: 12px;
+  font-size: 14px;
 }
 
 .mat-header-cell {
@@ -88,11 +94,9 @@ table {
 }
 
 .mat-cell {
-  font-size: 14px;
   color: #393939;
   border-bottom: 1px solid #e0e0e0;
 }
-
 
 tr.mat-row:hover {
   background: #f2f4f8 !important;
@@ -106,6 +110,7 @@ tr.mat-row:hover {
   background: #ffd7d9 !important;
 }
 
+/* ------------------ BADGE REVISADA ------------------ */
 
 .badge-revisada {
   background: #198038;
@@ -116,6 +121,8 @@ tr.mat-row:hover {
   font-weight: 600;
 }
 
+/* ------------------ BOTONES ------------------ */
+
 button[mat-button],
 button[mat-raised-button],
 button[mat-stroked-button] {
@@ -124,7 +131,6 @@ button[mat-stroked-button] {
   border-radius: 6px;
   padding: 6px 14px;
   font-weight: 500;
-  letter-spacing: 0.2px;
 }
 
 button[color="primary"] {
@@ -150,37 +156,7 @@ button[mat-stroked-button]:hover {
   background: #e5e5e5 !important;
 }
 
-
-.carbon-btn-danger {
-  background: #da1e28;
-  color: #ffffff;
-  font-family: 'IBM Plex Sans';
-  font-size: 14px;
-  font-weight: 600;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 16px;
-  cursor: pointer;
-  transition: background 0.15s ease-in-out;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.carbon-btn-danger:hover {
-  background: #ba1b23;
-}
-
-.carbon-btn-danger:active {
-  background: #750e13;
-}
-
-.carbon-btn-danger:disabled {
-  background: #e0e0e0;
-  color: #8d8d8d;
-  cursor: not-allowed;
-}
-
+/* ------------------ PAGINACIÓN ------------------ */
 
 .paginacion {
   margin-top: 24px;
@@ -199,13 +175,13 @@ button[mat-stroked-button]:hover {
   }
 }
 
+/* ------------------ RESPONSIVE ------------------ */
 
 @media (max-width: 1100px) {
   .filtros {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
 
 @media (max-width: 850px) {
   .filtros {
@@ -217,8 +193,8 @@ button[mat-stroked-button]:hover {
   }
 }
 
-
 @media (max-width: 650px) {
+
   .alertas-container {
     padding: 16px;
   }
@@ -257,8 +233,8 @@ button[mat-stroked-button]:hover {
   }
 }
 
-
 @media (max-width: 480px) {
+
   .mat-header-cell,
   .mat-cell {
     font-size: 12px;

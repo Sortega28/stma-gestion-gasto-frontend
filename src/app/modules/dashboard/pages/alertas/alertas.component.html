@@ -50,7 +50,8 @@
 
   <div *ngIf="loading" class="loading">Cargando alertas...</div>
 
-  <div class="tabla-wrapper" *ngIf="!loading">
+  <!-- 🔥 SIN WRAPPER — IGUAL QUE REPORTES -->
+  <div class="tabla" *ngIf="!loading">
 
     <table 
       mat-table 
@@ -106,7 +107,8 @@
 
     </table>
 
-  </div> 
+  </div>
+
   <div class="paginacion" *ngIf="totalPages > 1">
     
     <button 
