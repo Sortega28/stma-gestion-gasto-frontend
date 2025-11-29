@@ -10,7 +10,7 @@
   background: white;
   font-family: "IBM Plex Sans", sans-serif;
 
-  overflow-x: hidden !important;   /* anti desborde global */
+  overflow-x: hidden !important;
   overflow-y: auto !important;
 }
 
@@ -35,30 +35,32 @@ h2 {
   margin-bottom: 14px;
 }
 
-/* WRAPPER ANTI-DESBORDE */
+/* ✔️ WRAPPER PARA EVITAR DESBORDES */
 .tabla-wrapper {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
+  margin-bottom: 20px;
   border-radius: 8px;
 }
 
+/* TABLA */
 .tabla {
   width: 100%;
   background: #fff;
   border-radius: 8px;
-  margin-bottom: 20px;
+  border-collapse: collapse;
+  table-layout: auto;
 }
 
-/* Celda que SÍ puede saltar línea */
 .mat-header-cell,
 .mat-cell {
   padding: 12px 16px !important;
   font-size: 14px;
-  white-space: normal !important;  /* ❤️ rompe línea */
-  word-break: break-word;
+  white-space: nowrap;          /* ✔️ columnas no se expanden indefinidamente */
 }
 
+/* STATS GRID */
 .stats {
   display: grid;
   grid-template-columns: 1fr 320px;
@@ -81,9 +83,10 @@ h2 {
   width: 100% !important;
   max-width: 100%;
   height: 350px !important;
+  display: block;
 }
 
-/* KPI CARDS */
+/* KPIs */
 .cards {
   display: grid;
   gap: 12px;
@@ -111,7 +114,10 @@ h2 {
 .kpi.activas { background: #8e24aa; }
 .kpi.proveedor { background: #c2185b; }
 
-/* BREAKPOINTS */
+/* ========================= */
+/*      BREAKPOINTS          */
+/* ========================= */
+
 @media (max-width: 1200px) {
   .stats {
     grid-template-columns: 1fr;
@@ -131,12 +137,18 @@ h2 {
     padding: 16px;
   }
 
-  .tabla {
+  .mat-header-cell,
+  .mat-cell {
     font-size: 13px;
+    padding: 10px !important;
   }
 }
 
 @media (max-width: 700px) {
+  .tabla-wrapper {
+    margin-bottom: 16px;
+  }
+
   .cards {
     grid-template-columns: 1fr;
   }
