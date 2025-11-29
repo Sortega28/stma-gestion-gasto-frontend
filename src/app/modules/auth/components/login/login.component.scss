@@ -2,34 +2,41 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #3d52ff; 
+  background-color: #3d52ff;
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
+/* HEADER */
 .login-header {
   background-color: #fff;
   padding: 8px 24px;
   display: flex;
+  justify-content: center; /* Mejor centrado visual */
   align-items: center;
 }
+
 .login-header .logo {
   height: 80px;
 }
 
+/* MAIN */
 .login-main {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px; /* Para móviles */
 }
 
+/* CARD */
 .login-card {
   background: #f2f2f2;
   padding: 40px 48px;
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   text-align: center;
   width: 320px;
+  max-width: 100%; /* Evita desbordes */
 }
 
 .login-card h1 {
@@ -49,6 +56,7 @@
   gap: 12px;
 }
 
+/* CAMPOS */
 .login-card input[type="text"],
 .login-card input[type="password"] {
   padding: 10px 12px;
@@ -58,9 +66,11 @@
   width: 100%;
 }
 
+/* OJO PASSWORD */
 .password-wrapper {
   position: relative;
 }
+
 .password-wrapper .eye-btn {
   position: absolute;
   right: 8px;
@@ -68,8 +78,14 @@
   background: none;
   border: none;
   cursor: pointer;
+
+  span {
+    font-size: 20px;
+    color: #333;
+  }
 }
 
+/* CHECKBOX */
 .remember {
   display: flex;
   align-items: center;
@@ -78,6 +94,7 @@
   color: #333;
 }
 
+/* BOTÓN */
 .btn-login {
   background-color: #000;
   color: #fff;
@@ -88,10 +105,12 @@
   font-weight: 600;
   transition: background 0.3s ease;
 }
+
 .btn-login:hover {
   background-color: #222;
 }
 
+/* OLVIDASTE TU CONTRASEÑA */
 .forgot {
   display: inline-block;
   margin-top: 8px;
@@ -100,6 +119,7 @@
   text-decoration: underline;
 }
 
+/* FOOTER (ya responsive) */
 .login-footer {
   background: #fff;
   text-align: center;
@@ -111,6 +131,7 @@
   margin-bottom: 8px;
   font-size: 18px;
 }
+
 .social-icons i {
   margin: 0 6px;
   cursor: pointer;
@@ -122,13 +143,71 @@
   margin: 0 8px;
   text-decoration: none;
 }
+
 .footer-links a:hover {
   text-decoration: underline;
 }
 
+/* ERROR SNACKBAR */
 .snackbar-error {
   background-color: #e53935 !important;
   color: white !important;
   font-weight: 600;
   letter-spacing: 0.4px;
+}
+
+
+/* ------------------------------------------------ */
+/* 📱 RESPONSIVE BREAKPOINTS */
+/* ------------------------------------------------ */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .login-header .logo {
+    height: 70px;
+  }
+
+  .login-card {
+    padding: 32px 40px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 768px) {
+  .login-header .logo {
+    height: 60px;
+  }
+
+  .login-card {
+    padding: 28px 32px;
+    width: 90%;
+  }
+
+  .login-footer {
+    padding: 16px 0;
+  }
+}
+
+/* Móvil pequeño */
+@media (max-width: 480px) {
+  .login-header .logo {
+    height: 50px;
+  }
+
+  .login-card {
+    padding: 22px 26px;
+  }
+
+  .login-card h1 {
+    font-size: 1.3rem;
+  }
+
+  .login-card p {
+    font-size: 13px;
+  }
+
+  .btn-login {
+    padding: 12px;
+    font-size: 15px;
+  }
 }

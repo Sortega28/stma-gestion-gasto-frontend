@@ -1,27 +1,28 @@
 
 .sidebar {
-  width: 220px;                           
-  background: #f5f7fb;                    
+  width: 220px;
+  background: #f5f7fb;
   padding-top: 10px;
   border-right: 1px solid #d6d6d6;
   height: 100vh;
   position: sticky;
   top: 0;
-  box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease-in-out;
 }
 
 .menu-item {
   display: flex;
   align-items: center;
-  gap: 12px;                              
+  gap: 12px;
   padding: 14px 18px;
-  
+
   color: #333;
   cursor: pointer;
-
-  border-radius: 8px;                   
+  border-radius: 8px;
   margin: 6px 10px;
-  
+
   font-size: 0.95rem;
   font-weight: 500;
 
@@ -29,8 +30,9 @@
 }
 
 .menu-item:hover {
-  background: #3D52FF;                    
-  padding-left: 24px;                     
+  background: #3D52FF;
+  padding-left: 24px;
+}
 
 .menu-item mat-icon {
   font-size: 22px;
@@ -49,8 +51,44 @@
   color: white;
 }
 
+
 .sidebar ul,
 .sidebar li {
   all: unset;
 }
+
+@media (max-width: 992px) {
+  .sidebar {
+    width: 200px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    transform: translateX(-100%);
+    z-index: 9999;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+
+}
+
+@media (max-width: 480px) {
+  .menu-item {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .menu-item mat-icon {
+    font-size: 20px;
+  }
 }

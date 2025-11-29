@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectAuthUser } from '../../../auth/store/auth.selector';
@@ -11,10 +11,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+
+  @Output() sidebarToggle = new EventEmitter<void>();
+
   user$: Observable<any>;
 
   constructor(private store: Store, private router: Router) {
     this.user$ = this.store.select(selectAuthUser);
+  }
+
+  toggleSidebar() {
+    this.sidebarToggle.emit();
   }
 
   logout(): void {

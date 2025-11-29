@@ -45,7 +45,7 @@ export class DashboardHomeComponent implements OnInit, AfterViewInit {
     this.dashboardService.getResumen().subscribe({
       next: (res: DashboardResumen) => {
 
-        // Guardamos datos
+        // Guardar datos
         this.totalGasto = res.totalGasto;
         this.gastoMensual = res.gastoMensual;
         this.ordenesActivas = res.ordenesActivas;

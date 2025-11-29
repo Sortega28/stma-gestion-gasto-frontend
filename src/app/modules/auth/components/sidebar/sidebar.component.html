@@ -1,26 +1,26 @@
-<div class="sidebar">
+<div class="sidebar" [class.open]="sidebarOpen">
 
   <!-- DASHBOARD -->
-  <div class="menu-item" 
-       [class.active]="isActive('home')" 
-       (click)="router.navigate(['/dashboard/home'])">
+  <div class="menu-item"
+       [class.active]="isActive('home')"
+       (click)="navigateAndClose('/dashboard/home')">
       <mat-icon>grid_view</mat-icon>
       <span>Dashboard</span>
   </div>
 
   <!-- ÓRDENES -->
-  <div class="menu-item" 
-       [class.active]="isActive('solicitudes')" 
-       (click)="router.navigate(['/dashboard/solicitudes'])">
+  <div class="menu-item"
+       [class.active]="isActive('solicitudes')"
+       (click)="navigateAndClose('/dashboard/solicitudes')">
       <mat-icon>assignment</mat-icon>
       <span>Órdenes de gasto</span>
   </div>
 
-  <!-- USUARIOS (solo ADMIN) -->
+  <!-- USUARIOS -->
   <div class="menu-item"
        *ngIf="(role$ | async) === 'admin'"
-       [class.active]="isActive('users')" 
-       (click)="router.navigate(['/dashboard/users'])">
+       [class.active]="isActive('users')"
+       (click)="navigateAndClose('/dashboard/users')">
       <mat-icon>group</mat-icon>
       <span>Usuarios</span>
   </div>
@@ -28,8 +28,8 @@
   <!-- REPORTES -->
   <div class="menu-item"
        *ngIf="['user','auditor','admin'].includes((role$ | async)!)"
-       [class.active]="isActive('reportes')" 
-       (click)="router.navigate(['/dashboard/reportes'])">
+       [class.active]="isActive('reportes')"
+       (click)="navigateAndClose('/dashboard/reportes')">
       <mat-icon>bar_chart</mat-icon>
       <span>Reportes</span>
   </div>
@@ -38,7 +38,7 @@
   <div class="menu-item"
        *ngIf="(role$ | async) === 'auditor' || (role$ | async) === 'admin'"
        [class.active]="isActive('alertas')"
-       (click)="router.navigate(['/dashboard/alertas'])">
+       (click)="navigateAndClose('/dashboard/alertas')">
       <mat-icon>warning</mat-icon>
       <span>Alertas</span>
   </div>

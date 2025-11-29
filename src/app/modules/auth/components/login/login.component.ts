@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
 import * as AuthActions from '../../store/auth.actions';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { selectAuthError, selectAuthLoading } from '../../store/auth.selector';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
 
   email = '';
   password = '';
@@ -20,6 +21,8 @@ export class LoginComponent {
   loading$: Observable<boolean>;
   error$: Observable<string | null>;
 
+  private destroy$ = new Subject<void>();
+
   constructor(
     private store: Store<AppState>,
     private snackBar: MatSnackBar
@@ -27,34 +30,42 @@ export class LoginComponent {
     this.loading$ = this.store.select(selectAuthLoading);
     this.error$ = this.store.select(selectAuthError);
 
-    // Mostrar alerta automáticamente cuando existe un error
-    this.error$.subscribe(err => {
-      if (err) {
-        this.snackBar.open(err, 'Cerrar', {
-          duration: 3500,
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-          panelClass: ['snackbar-error']
-        });
-      }
-    });
+    this.error$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(err => {
+        if (err) {
+          this.snackBar.open(err, 'Cerrar', {
+            duration: 3500,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            panelClass: ['snackbar-error']
+          });
+        }
+      });
   }
 
-  // Alternar visibilidad contraseña
   togglePassword(): void {
     this.showPassword = !this.showPassword;
   }
 
-  // Acción de login
   onLogin(): void {
-    if (!this.email || !this.password) {
+    const email = this.email.trim();
+    const password = this.password.trim();
+
+    if (!email || !password) {
       this.snackBar.open('Introduce correo y contraseña', 'OK', {
-        duration: 3000,
+        duration: 2500,
         panelClass: ['snackbar-error']
       });
       return;
     }
 
-    this.store.dispatch(AuthActions.login({ email: this.email, password: this.password }));
+    this.store.dispatch(AuthActions.login({ email, password }));
+  }
+
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
