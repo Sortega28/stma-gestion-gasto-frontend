@@ -1,6 +1,9 @@
 .layout-container {
-  display: flex;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box;
 }
+
 
 .content {
   flex: 1;
