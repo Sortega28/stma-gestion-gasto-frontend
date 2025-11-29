@@ -5,6 +5,9 @@
 .orders-container {
   padding: 24px;
   font-family: "IBM Plex Sans", sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden !important;    /* ← FIX 1 */
 }
 
 h2 {
@@ -28,28 +31,30 @@ h2 {
   margin-bottom: 16px;
 }
 
+/* WRAPPER RESPONSIVE REAL */
 .tabla-wrapper {
   width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: hidden !important;      /* ← FIX 2 (evita empujar) */
   margin-top: 10px;
   border-radius: 8px;
 }
 
+/* TABLA */
 table {
-  width: 100%;
+  width: 100% !important;
+  border-collapse: collapse;
   background: white;
   border-radius: 8px;
-  border-collapse: collapse;
-  table-layout: auto;
+  table-layout: fixed !important;   /* ← FIX 3 (evita desbordar) */
   display: table;
 }
 
 .mat-header-cell,
 .mat-cell {
-  white-space: normal !important;     
-  word-wrap: break-word;
-  word-break: break-word;
+  white-space: normal !important;   
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  min-width: 0 !important;          /* ← FIX 4 (rompe celdas largas) */
   padding: 12px 16px !important;
   font-size: 14px;
 }
@@ -63,7 +68,16 @@ table {
   margin-bottom: 30px;
 }
 
+/* BOTONES DENTRO DE TABLA */
+button,
+a.detalle-link {
+  white-space: normal !important;   /* ← FIX 5 */
+  max-width: 100%;
+}
 
+/* ============================
+    FILTROS
+   ============================ */
 .filtros-container {
   background: #ffffff;
   padding: 20px;
@@ -92,8 +106,6 @@ table {
 .btn-buscar {
   background: #3c6df0;
   color: white;
-  border: none;
-  padding: 0 18px;
   border-radius: 8px;
   font-weight: 600;
   font-size: 15px;
@@ -114,7 +126,7 @@ table {
   transform: translateY(-1px);
 }
 
-
+/* PAGINACIÓN */
 .paginacion {
   margin-top: 25px;
   display: flex;
@@ -154,12 +166,14 @@ table {
   text-align: center;
 }
 
+/* ============================
+   RESPONSIVE BREAKPOINTS
+   ============================ */
 
 @media (max-width: 1024px) {
   .filtros-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-
   h2 {
     font-size: 1.6rem;
   }
@@ -169,14 +183,12 @@ table {
   .filtros-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
   .btn-buscar {
     grid-column: span 2;
   }
 }
 
 @media (max-width: 650px) {
-
   .orders-container {
     padding: 16px;
   }
@@ -221,7 +233,6 @@ table {
 }
 
 @media (max-width: 480px) {
-
   h2 {
     font-size: 1.25rem;
   }

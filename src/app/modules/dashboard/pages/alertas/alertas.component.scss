@@ -6,6 +6,7 @@
   color: #161616;
   width: 100%;
   box-sizing: border-box;
+  overflow-x: hidden !important;   /* ← FIX 1 */
 }
 
 /* TITULO */
@@ -56,30 +57,29 @@ h2 {
   }
 }
 
-/* 🚫 ELIMINAMOS COMPLETAMENTE .tabla-wrapper Y CUALQUIER overflow-x */
+/* ▼▼ FIX: tabla completamente responsive ▼▼ */
 
-/* TABLA (MISMO PATRÓN QUE REPORTES) */
 .tabla {
   width: 100%;
   background: #ffffff;
   border-radius: 8px;
   margin-top: 10px;
-  overflow: hidden;       /* 👉 clave: corta lo que sobresalga sin meter scroll global */
+  overflow: hidden;          
   box-sizing: border-box;
 }
 
 table {
-  width: 100%;
+  width: 100% !important;
   border-collapse: collapse;
   background: #ffffff;
-  table-layout: auto;
+  table-layout: fixed !important;  /* ← FIX 2 */
 }
 
-.mat-header-cell,
-.mat-cell {
-  white-space: normal !important;
-  word-wrap: break-word;
-  word-break: break-word;
+th.mat-header-cell,
+td.mat-cell {
+  white-space: normal !important;    /* ← FIX 3 */
+  word-break: break-word !important; /* ← FIX 3 */
+  min-width: 0 !important;           /* ← FIX 4 */
   padding: 12px;
   font-size: 14px;
 }
@@ -118,6 +118,12 @@ tr.mat-row:hover {
   font-weight: 600;
 }
 
+/* ▼ FIX 5: botones largos ya no estiran la tabla ▼ */
+button {
+  white-space: normal !important;
+  max-width: 100%;
+}
+
 /* BOTONES */
 button[mat-button],
 button[mat-raised-button],
@@ -151,37 +157,6 @@ button[mat-stroked-button] {
 
 button[mat-stroked-button]:hover {
   background: #e5e5e5 !important;
-}
-
-/* BOTÓN DANGER (si lo usas aquí también) */
-.carbon-btn-danger {
-  background: #da1e28;
-  color: #ffffff;
-  font-family: 'IBM Plex Sans';
-  font-size: 14px;
-  font-weight: 600;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 16px;
-  cursor: pointer;
-  transition: background 0.15s ease-in-out;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.carbon-btn-danger:hover {
-  background: #ba1b23;
-}
-
-.carbon-btn-danger:active {
-  background: #750e13;
-}
-
-.carbon-btn-danger:disabled {
-  background: #e0e0e0;
-  color: #8d8d8d;
-  cursor: not-allowed;
 }
 
 /* PAGINACIÓN */
@@ -242,8 +217,8 @@ button[mat-stroked-button]:hover {
     font-size: 13px;
   }
 
-  .mat-header-cell,
-  .mat-cell {
+  th.mat-header-cell,
+  td.mat-cell {
     padding: 10px;
     font-size: 13px;
   }
@@ -259,8 +234,8 @@ button[mat-stroked-button]:hover {
 }
 
 @media (max-width: 480px) {
-  .mat-header-cell,
-  .mat-cell {
+  th.mat-header-cell,
+  td.mat-cell {
     font-size: 12px;
   }
 
