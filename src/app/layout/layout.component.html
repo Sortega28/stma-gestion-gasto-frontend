@@ -1,11 +1,13 @@
-<app-header></app-header>
+<app-header (sidebarToggle)="sidebar.toggleSidebar()"></app-header>
 
 <div class="layout-container">
-  <app-sidebar></app-sidebar>
+
+  <app-sidebar #sidebar></app-sidebar>
 
   <main class="content">
     <router-outlet></router-outlet>
   </main>
+  
 </div>
 
 <app-footer></app-footer>

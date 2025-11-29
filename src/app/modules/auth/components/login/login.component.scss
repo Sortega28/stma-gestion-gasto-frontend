@@ -6,12 +6,12 @@
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
-/* HEADER */
+
 .login-header {
   background-color: #fff;
   padding: 8px 24px;
   display: flex;
-  justify-content: center; /* Mejor centrado visual */
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -19,7 +19,7 @@
   height: 80px;
 }
 
-/* MAIN */
+
 .login-main {
   flex: 1;
   display: flex;
@@ -28,7 +28,7 @@
   padding: 20px; /* Para móviles */
 }
 
-/* CARD */
+
 .login-card {
   background: #f2f2f2;
   padding: 40px 48px;
@@ -56,7 +56,7 @@
   gap: 12px;
 }
 
-/* CAMPOS */
+
 .login-card input[type="text"],
 .login-card input[type="password"] {
   padding: 10px 12px;
@@ -66,7 +66,7 @@
   width: 100%;
 }
 
-/* OJO PASSWORD */
+
 .password-wrapper {
   position: relative;
 }
@@ -85,7 +85,6 @@
   }
 }
 
-/* CHECKBOX */
 .remember {
   display: flex;
   align-items: center;
@@ -94,7 +93,7 @@
   color: #333;
 }
 
-/* BOTÓN */
+
 .btn-login {
   background-color: #000;
   color: #fff;
@@ -110,7 +109,6 @@
   background-color: #222;
 }
 
-/* OLVIDASTE TU CONTRASEÑA */
 .forgot {
   display: inline-block;
   margin-top: 8px;
@@ -119,7 +117,6 @@
   text-decoration: underline;
 }
 
-/* FOOTER (ya responsive) */
 .login-footer {
   background: #fff;
   text-align: center;
@@ -148,7 +145,7 @@
   text-decoration: underline;
 }
 
-/* ERROR SNACKBAR */
+
 .snackbar-error {
   background-color: #e53935 !important;
   color: white !important;
@@ -157,11 +154,6 @@
 }
 
 
-/* ------------------------------------------------ */
-/* 📱 RESPONSIVE BREAKPOINTS */
-/* ------------------------------------------------ */
-
-/* Tablet */
 @media (max-width: 992px) {
   .login-header .logo {
     height: 70px;
@@ -172,7 +164,7 @@
   }
 }
 
-/* Móvil */
+
 @media (max-width: 768px) {
   .login-header .logo {
     height: 60px;
@@ -188,7 +180,6 @@
   }
 }
 
-/* Móvil pequeño */
 @media (max-width: 480px) {
   .login-header .logo {
     height: 50px;
