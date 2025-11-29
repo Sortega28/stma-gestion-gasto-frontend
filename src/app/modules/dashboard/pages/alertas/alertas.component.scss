@@ -9,7 +9,7 @@
   overflow-x: hidden !important;   /* ← FIX 1 */
 }
 
-/* TITULO */
+
 h2 {
   margin-bottom: 24px;
   font-size: 24px;
@@ -17,13 +17,13 @@ h2 {
   color: #161616;
 }
 
-/* BOTÓN REGENERAR */
+
 .regenerar-wrapper {
   margin-bottom: 20px;
   display: flex;
 }
 
-/* LOADING */
+
 .loading {
   font-size: 16px;
   font-weight: 600;
@@ -31,7 +31,7 @@ h2 {
   padding: 12px 0;
 }
 
-/* FILTROS */
+
 .filtros {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -108,7 +108,7 @@ tr.mat-row:hover {
   background: #ffd7d9 !important;
 }
 
-/* BADGE REVISADA */
+
 .badge-revisada {
   background: #198038;
   color: white;
@@ -118,13 +118,13 @@ tr.mat-row:hover {
   font-weight: 600;
 }
 
-/* ▼ FIX 5: botones largos ya no estiran la tabla ▼ */
+
 button {
   white-space: normal !important;
   max-width: 100%;
 }
 
-/* BOTONES */
+
 button[mat-button],
 button[mat-raised-button],
 button[mat-stroked-button] {
@@ -159,7 +159,7 @@ button[mat-stroked-button]:hover {
   background: #e5e5e5 !important;
 }
 
-/* PAGINACIÓN */
+
 .paginacion {
   margin-top: 24px;
   display: flex;
@@ -177,7 +177,6 @@ button[mat-stroked-button]:hover {
   }
 }
 
-/* BREAKPOINTS */
 @media (max-width: 1100px) {
   .filtros {
     grid-template-columns: repeat(3, 1fr);

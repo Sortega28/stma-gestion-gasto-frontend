@@ -7,7 +7,7 @@
   font-family: "IBM Plex Sans", sans-serif;
   width: 100%;
   box-sizing: border-box;
-  overflow-x: hidden !important;    /* ← FIX 1 */
+  overflow-x: hidden !important;    
 }
 
 h2 {
@@ -31,21 +31,21 @@ h2 {
   margin-bottom: 16px;
 }
 
-/* WRAPPER RESPONSIVE REAL */
+
 .tabla-wrapper {
   width: 100%;
-  overflow: hidden !important;      /* ← FIX 2 (evita empujar) */
+  overflow: hidden !important;      
   margin-top: 10px;
   border-radius: 8px;
 }
 
-/* TABLA */
+
 table {
   width: 100% !important;
   border-collapse: collapse;
   background: white;
   border-radius: 8px;
-  table-layout: fixed !important;   /* ← FIX 3 (evita desbordar) */
+  table-layout: fixed !important;  
   display: table;
 }
 
@@ -54,7 +54,7 @@ table {
   white-space: normal !important;   
   word-wrap: break-word !important;
   word-break: break-word !important;
-  min-width: 0 !important;          /* ← FIX 4 (rompe celdas largas) */
+  min-width: 0 !important;          
   padding: 12px 16px !important;
   font-size: 14px;
 }
@@ -68,16 +68,14 @@ table {
   margin-bottom: 30px;
 }
 
-/* BOTONES DENTRO DE TABLA */
+
 button,
 a.detalle-link {
   white-space: normal !important;   /* ← FIX 5 */
   max-width: 100%;
 }
 
-/* ============================
-    FILTROS
-   ============================ */
+
 .filtros-container {
   background: #ffffff;
   padding: 20px;
@@ -126,7 +124,6 @@ a.detalle-link {
   transform: translateY(-1px);
 }
 
-/* PAGINACIÓN */
 .paginacion {
   margin-top: 25px;
   display: flex;
@@ -166,9 +163,7 @@ a.detalle-link {
   text-align: center;
 }
 
-/* ============================
-   RESPONSIVE BREAKPOINTS
-   ============================ */
+
 
 @media (max-width: 1024px) {
   .filtros-grid {
