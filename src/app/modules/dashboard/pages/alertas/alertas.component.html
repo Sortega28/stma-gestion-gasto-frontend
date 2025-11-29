@@ -54,6 +54,7 @@
   <div *ngIf="loading" class="loading">Cargando alertas...</div>
 
   <!-- TABLA -->
+   <div class="tabla-wrapper">
   <table 
     mat-table 
     [dataSource]="dataSource" 
@@ -117,6 +118,7 @@
     <tr mat-row *matRowDef="let row; columns: cols"></tr>
 
   </table>
+  </div>
 
   <!-- PAGINACIÓN -->
   <div class="paginacion" *ngIf="totalPages > 1">
