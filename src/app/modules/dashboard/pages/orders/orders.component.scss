@@ -5,8 +5,6 @@
 .orders-container {
   padding: 24px;
   font-family: "IBM Plex Sans", sans-serif;
-  width: 100%;
-  box-sizing: border-box;
 }
 
 h2 {
@@ -30,18 +28,27 @@ h2 {
   margin-bottom: 16px;
 }
 
-/* 🔥 IGUAL QUE REPORTES: SIN WRAPPER, SIN SCROLL, SIN DISPLAY */
-.tabla {
+.tabla-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+table {
   width: 100%;
   background: white;
   border-radius: 8px;
-  overflow: hidden;
-  margin-bottom: 30px;
+  border-collapse: collapse;
+  table-layout: auto;
+  display: table;
 }
 
 .mat-header-cell,
 .mat-cell {
-  white-space: normal !important;
+  white-space: normal !important;     
+  word-wrap: break-word;
   word-break: break-word;
   padding: 12px 16px !important;
   font-size: 14px;
@@ -52,8 +59,10 @@ h2 {
   background: #f5f5f5;
 }
 
+.tabla {
+  margin-bottom: 30px;
+}
 
-/* ------------------ FILTROS ------------------ */
 
 .filtros-container {
   background: #ffffff;
@@ -80,9 +89,6 @@ h2 {
   width: 100%;
 }
 
-
-/* ------------------ BOTONES ------------------ */
-
 .btn-buscar {
   background: #3c6df0;
   color: white;
@@ -108,8 +114,6 @@ h2 {
   transform: translateY(-1px);
 }
 
-
-/* ------------------ PAGINACIÓN ------------------ */
 
 .paginacion {
   margin-top: 25px;
@@ -150,8 +154,6 @@ h2 {
   text-align: center;
 }
 
-
-/* ------------------ RESPONSIVE ------------------ */
 
 @media (max-width: 1024px) {
   .filtros-grid {
