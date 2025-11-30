@@ -1,47 +1,49 @@
+
+
 .dashboard-layout .content {
-  padding: 0 !important;        /* quita el padding del layout */
+  padding: 0 !important;
   width: 100% !important;
   max-width: 100% !important;
   margin: 0 !important;
+  overflow-x: hidden !important;
 }
 
 
 .dashboard-container {
   width: 100%;
-  padding: 16px;        
+  padding: 16px;
   box-sizing: border-box;
-  overflow-x: hidden;    
+  overflow-x: hidden !important;
+  max-width: 100% !important;
 }
 
 @media (max-width: 768px) {
   .dashboard-container {
-    padding-left: 1rem;    
-    padding-right: 1rem;   
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding: 1rem;
   }
 }
 
 
 .tabla-wrapper {
   width: 100%;
-  max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   border-radius: 8px;
   margin-bottom: 32px;
+  -webkit-overflow-scrolling: touch;
+  display: block;
 }
 
 .tabla {
   width: 100%;
-  min-width: 600px;          
+  min-width: 600px;
   background: white;
   border-collapse: collapse;
 }
 
 @media (max-width: 600px) {
   .tabla {
-    min-width: 520px;       
+    min-width: 520px;
     font-size: 12px;
   }
 
@@ -52,14 +54,13 @@
 }
 
 
-
 .dashboard-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 24px;
   width: 100%;
   max-width: 100%;
-  min-width: 0;             
+  min-width: 0;        
   align-items: start;
 }
 
@@ -71,51 +72,46 @@
 
 @media (max-width: 800px) {
   .dashboard-grid {
-    grid-template-columns: 1fr;   
+    grid-template-columns: 1fr;
   }
 }
 
 
 .dashboard-grid > * {
-  min-width: 0 !important;    
+  min-width: 0 !important;
+  overflow: hidden !important;
 }
-
 
 
 .grafica {
   background: white;
   padding: 16px;
   border-radius: 8px;
-  overflow: hidden;         
+  overflow: hidden !important;
   width: 100%;
   box-sizing: border-box;
 }
 
-
 .grafica canvas {
   width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
   height: 320px !important;
   display: block;
   box-sizing: border-box;
 }
 
-
 @media (max-width: 800px) {
   .grafica canvas {
-    max-width: 100% !important;   
-    min-width: 0 !important;      
-    width: 100% !important;       
-    display: block;
-    box-sizing: border-box;
+    height: 260px !important;
   }
 }
 
 @media (max-width: 600px) {
   .grafica canvas {
-    height: 240px !important;
+    height: 220px !important;
   }
 }
-
 
 
 .cards {
@@ -128,7 +124,6 @@
 
 .kpi {
   width: 100%;
-  max-width: 100%;          
   border-radius: 14px;
   padding: 18px;
   text-align: center;
@@ -143,6 +138,7 @@
   margin-top: 6px;
   font-size: 1.15rem;
   font-weight: 600;
+  overflow-wrap: anywhere;   
 }
 
 .kpi.total     { background: #3f6c6d; }
