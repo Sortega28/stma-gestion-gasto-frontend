@@ -9,14 +9,13 @@
   width: 100%;
   overflow-x: auto;
   border-radius: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .tabla {
   width: 100%;
-  border-collapse: collapse;
   background: white;
-  min-width: auto;
+  border-collapse: collapse;
 }
 
 @media (max-width: 600px) {
@@ -29,19 +28,25 @@
   }
 }
 
-
 .stats {
   display: grid;
-  grid-template-columns: 2fr 1fr; 
+  grid-template-columns: 2fr 1fr;  
   gap: 24px;
   width: 100%;
-  min-width: 0;
+  align-items: start;
 }
 
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   .stats {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+
+@media (max-width: 800px) {
+  .stats {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -52,96 +57,40 @@
   overflow: hidden;
 }
 
-.grafica h3 {
-  margin-bottom: 10px;
-}
-
 .grafica canvas {
   width: 100% !important;
-  height: 300px !important;
-  max-width: 100%;
+  height: 320px !important;
 }
 
-
-@media (max-width: 700px) {
+@media (max-width: 600px) {
   .grafica canvas {
     height: 240px !important;
   }
 }
 
 
-@media (max-width: 480px) {
-  .grafica canvas {
-    height: 200px !important;
-  }
-}
-
 .cards {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   gap: 16px;
-  width: 100%;
 }
 
-
+/* TARJETAS */
 .kpi {
   width: 100%;
-  color: white;
   border-radius: 14px;
-  padding: 20px 18px;
+  padding: 18px;
   text-align: center;
+  color: white;
   font-weight: 500;
-  font-size: 16px;
-  box-sizing: border-box;
-
+  font-size: 15px;
   box-shadow: 0 3px 8px rgba(0,0,0,0.12);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.kpi:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 16px rgba(0,0,0,0.18);
 }
 
 .kpi span {
-  display: block;
   margin-top: 6px;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 600;
-}
-
-
-@media (max-width: 700px) {
-  .kpi {
-    padding: 16px 14px;
-    font-size: 15px;
-  }
-
-  .kpi span {
-    font-size: 1.1rem;
-  }
-
-  .cards {
-    gap: 14px;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .kpi {
-    padding: 14px 12px;    
-    font-size: 14px;       
-    border-radius: 10px;
-  }
-
-  .kpi span {
-    font-size: 1rem;       
-    margin-top: 4px;
-  }
-
-  .cards {
-    gap: 12px;
-  }
 }
 
 
@@ -149,3 +98,13 @@
 .kpi.mensual   { background: #3f51b5; }
 .kpi.activas   { background: #8e24aa; }
 .kpi.proveedor { background: #c2185b; }
+
+@media (max-width: 600px) {
+  .kpi {
+    padding: 14px;
+    font-size: 14px;
+  }
+  .kpi span {
+    font-size: 1rem;
+  }
+}
