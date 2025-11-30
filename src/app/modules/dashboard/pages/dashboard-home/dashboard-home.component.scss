@@ -76,46 +76,49 @@
 /* ================================ KPI CARDS ================================ */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: 1fr; /* Móvil por defecto */
   gap: 16px;
 }
 
+/* ====== VISTA ESCRITORIO (A PARTIR DE 900px) ====== */
+@media (min-width: 900px) {
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas */
+    grid-template-rows: auto auto; /* Dos filas */
+    gap: 16px;
+
+    /* Orden forzado */
+    grid-template-areas:
+      "total total"
+      "mensual mensual"
+      "activas proveedor";
+  }
+
+  .kpi.total     { grid-area: total; }
+  .kpi.mensual   { grid-area: mensual; }
+  .kpi.activas   { grid-area: activas; }
+  .kpi.proveedor { grid-area: proveedor; }
+}
+
+/* ====== ESTILOS DE LAS TARJETAS ====== */
 .kpi {
   color: white;
   border-radius: 10px;
-  padding: 12px;
+  padding: 16px;
   text-align: center;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .kpi span {
   display: block;
   margin-top: 6px;
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 600;
 }
 
-.kpi.total {
-  background: #3f6c6d;
-}
-
-.kpi.mensual {
-  background: #3f51b5;
-}
-
-.kpi.activas {
-  background: #8e24aa;
-}
-
-.kpi.proveedor {
-  background: #c2185b;
-}
-
-/* ==================== NUEVO: AJUSTE PARA KPIs EN MÓVILES ==================== */
-@media (max-width: 480px) {
-  .cards {
-    /* Forza a las tarjetas KPI a apilarse en una sola columna */
-    grid-template-columns: 1fr;
-  }
-}
+.kpi.total     { background: #3f6c6d; }
+.kpi.mensual   { background: #3f51b5; }
+.kpi.activas   { background: #8e24aa; }
+.kpi.proveedor { background: #c2185b; }
