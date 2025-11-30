@@ -17,6 +17,10 @@ html, body {
 
 .page-content {
   flex: 1;
-  padding: 20px;
   background: white;
+  padding: 20px;
+}
+
+.page-content.dashboard-page {
+  padding: 0;
 }
