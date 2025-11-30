@@ -1,40 +1,31 @@
 /* ================================
    CONTENEDOR PRINCIPAL
    ================================ */
-
 .dashboard-container {
   width: 100%;
-  padding: 24px;
+  padding: 16px; // un poco menos en móvil
   box-sizing: border-box;
 }
 
-/* Título */
-.dashboard-container h2 {
-  margin-bottom: 16px;
-  font-weight: 600;
-}
-
 /* ================================
-   TABLA (idéntico a Reports)
+   TABLA
    ================================ */
-
 .tabla-wrapper {
   width: 100%;
-  overflow-x: auto;
   border-radius: 8px;
   margin-bottom: 24px;
 }
 
 .tabla {
   width: 100%;
-  min-width: 700px;           /* scroll si es muy estrecho */
   border-collapse: collapse;
   background: white;
+  min-width: auto; // que se ajuste siempre al ancho
 }
 
 .mat-header-cell,
 .mat-cell {
-  padding: 12px 16px !important;
+  padding: 8px 12px !important; // menos padding en móvil
   font-size: 14px;
   white-space: normal !important;
   word-break: break-word !important;
@@ -43,7 +34,6 @@
 /* ================================
    GRID: GRAFICO + CARDS
    ================================ */
-
 .stats {
   display: grid;
   grid-template-columns: 1fr 320px;
@@ -57,15 +47,17 @@
   }
 }
 
+.stats > * {
+  max-width: 100%; // evita desbordes
+}
+
 /* ================================
    GRÁFICO
    ================================ */
-
 .grafica {
   background: white;
   padding: 16px;
   border-radius: 8px;
-  overflow: hidden;
 }
 
 .grafica h3 {
@@ -74,30 +66,35 @@
 
 .grafica canvas {
   width: 100% !important;
-  height: 300px !important;
+  height: auto !important; // altura flexible
+  max-height: 300px;
 }
 
 @media (max-width: 700px) {
   .grafica canvas {
-    height: 240px !important;
+    max-height: 240px;
   }
 }
 
 @media (max-width: 480px) {
   .grafica canvas {
-    height: 200px !important;
+    max-height: 200px;
   }
 }
 
 /* ================================
    KPI CARDS
    ================================ */
-
 .cards {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr; // dos por fila en pantallas medianas
   gap: 16px;
-  height: fit-content;
+}
+
+@media (max-width: 480px) {
+  .cards {
+    grid-template-columns: 1fr; // una por fila en móvil
+  }
 }
 
 .kpi {

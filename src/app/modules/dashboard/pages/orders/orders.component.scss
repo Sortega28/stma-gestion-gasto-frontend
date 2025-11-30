@@ -71,8 +71,7 @@ table {
 
 button,
 a.detalle-link {
-  white-space: normal !important;   /* ← FIX 5 */
-  max-width: 100%;
+  white-space: normal !important;  
 }
 
 
@@ -108,12 +107,10 @@ a.detalle-link {
   font-weight: 600;
   font-size: 15px;
   cursor: pointer;
-
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-
   height: 56px;
   width: 100%;
   transition: 0.2s ease;
@@ -139,7 +136,6 @@ a.detalle-link {
   border-radius: 8px;
   font-weight: 500;
   cursor: pointer;
-
   display: flex;
   align-items: center;
   gap: 6px;
