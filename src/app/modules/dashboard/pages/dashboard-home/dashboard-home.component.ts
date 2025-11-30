@@ -12,7 +12,6 @@ Chart.register(...registerables);
 })
 export class DashboardHomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  userName = '';
   loading = true;
 
   totalGasto = 0;
@@ -40,16 +39,14 @@ export class DashboardHomeComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   ngAfterViewInit(): void {
-    /** 🔥 Redibuja el gráfico cuando cambia el ancho de la pantalla */
+    /** Redibuja el gráfico en cambio de tamaño */
     this.resizeListener = () => {
       if (this.chart) this.chart.resize();
     };
-
     window.addEventListener('resize', this.resizeListener);
   }
 
   ngOnDestroy(): void {
-    /** Evita memory leaks */
     if (this.resizeListener) {
       window.removeEventListener('resize', this.resizeListener);
     }
@@ -73,8 +70,8 @@ export class DashboardHomeComponent implements OnInit, AfterViewInit, OnDestroy 
 
         this.loading = false;
 
-        /** 🔥 redibuja el gráfico después de que Angular actualice el DOM */
-        setTimeout(() => this.dibujarGrafica(), 50);
+        /** Asegurar que el canvas existe antes de pintar */
+        setTimeout(() => this.dibujarGrafica(), 30);
       },
       error: (err) => {
         console.error('Error cargando dashboard:', err);
@@ -106,7 +103,7 @@ export class DashboardHomeComponent implements OnInit, AfterViewInit, OnDestroy 
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false,   
+        maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: { y: { beginAtZero: true } }
       }
