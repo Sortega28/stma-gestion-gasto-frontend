@@ -1,40 +1,35 @@
-/* ============================
+/* ================================
    CONTENEDOR PRINCIPAL
-   ============================ */
+   ================================ */
+
 .dashboard-container {
   width: 100%;
-  max-width: 1200px;         /* 🔥 evita que el grid estire el layout */
-  margin: 0 auto;
   padding: 24px;
   box-sizing: border-box;
-  font-family: "IBM Plex Sans", sans-serif;
-  overflow-x: clip !important; /* 🔥 evita scroll lateral siempre */
 }
 
-h2 {
-  font-weight: 600;
+/* Título */
+.dashboard-container h2 {
   margin-bottom: 16px;
+  font-weight: 600;
 }
 
+/* ================================
+   TABLA (idéntico a Reports)
+   ================================ */
 
-/* ============================
-   TABLA (scroll horizontal en móviles)
-   ============================ */
 .tabla-wrapper {
   width: 100%;
   overflow-x: auto;
-  overflow-y: hidden;
   border-radius: 8px;
   margin-bottom: 24px;
 }
 
 .tabla {
   width: 100%;
-  background: white;
-  border-radius: 8px;
+  min-width: 700px;           /* scroll si es muy estrecho */
   border-collapse: collapse;
-  table-layout: auto;
-  min-width: 650px;        /* 🔥 asegura scroll en pantallas pequeñas */
+  background: white;
 }
 
 .mat-header-cell,
@@ -42,40 +37,35 @@ h2 {
   padding: 12px 16px !important;
   font-size: 14px;
   white-space: normal !important;
-  word-break: break-word;
+  word-break: break-word !important;
 }
 
-@media (max-width: 600px) {
-  .tabla {
-    min-width: 500px;
+/* ================================
+   GRID: GRAFICO + CARDS
+   ================================ */
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  width: 100%;
+}
+
+@media (max-width: 1000px) {
+  .stats {
+    grid-template-columns: 1fr;
   }
 }
 
-
-/* ============================
-   GRID DE ESTADÍSTICAS
-   ============================ */
-.stats {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 24px;
-  width: 100%;
-  min-width: 0;               /* 🔥 evita overflow interno del grid */
-}
-
-.stats > * {
-  min-width: 0 !important;    /* 🔥 clave para que canvas NO desborde */
-}
-
-
-/* ============================
+/* ================================
    GRÁFICO
-   ============================ */
+   ================================ */
+
 .grafica {
   background: white;
   padding: 16px;
   border-radius: 8px;
-  overflow: hidden;           /* 🔥 asegura que el canvas no empuje el layout */
+  overflow: hidden;
 }
 
 .grafica h3 {
@@ -84,39 +74,30 @@ h2 {
 
 .grafica canvas {
   width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
-  max-height: 260px !important; /* 🔥 tamaño seguro */
-  display: block;
+  height: 300px !important;
 }
 
-/* reduce tamaño en móviles */
 @media (max-width: 700px) {
   .grafica canvas {
-    max-height: 220px !important;
+    height: 240px !important;
   }
 }
 
 @media (max-width: 480px) {
   .grafica canvas {
-    max-height: 180px !important;
+    height: 200px !important;
   }
 }
 
-
-/* ============================
+/* ================================
    KPI CARDS
-   ============================ */
+   ================================ */
+
 .cards {
   display: grid;
+  grid-template-columns: 1fr;
   gap: 16px;
   height: fit-content;
-}
-
-@media (max-width: 700px) {
-  .cards {
-    grid-template-columns: 1fr;
-  }
 }
 
 .kpi {

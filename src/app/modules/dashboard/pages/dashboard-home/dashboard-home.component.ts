@@ -106,7 +106,7 @@ export class DashboardHomeComponent implements OnInit, AfterViewInit, OnDestroy 
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false,   // 🔥 fundamental para evitar overflow
+        maintainAspectRatio: false,   
         plugins: { legend: { display: false } },
         scales: { y: { beginAtZero: true } }
       }
