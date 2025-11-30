@@ -111,3 +111,11 @@
 .kpi.proveedor {
   background: #c2185b;
 }
+
+/* ==================== NUEVO: AJUSTE PARA KPIs EN MÓVILES ==================== */
+@media (max-width: 480px) {
+  .cards {
+    /* Forza a las tarjetas KPI a apilarse en una sola columna */
+    grid-template-columns: 1fr;
+  }
+}
