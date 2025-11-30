@@ -1,12 +1,9 @@
-
-
 .dashboard-container {
   width: 100%;
   padding: 16px;        
   box-sizing: border-box;
   overflow-x: hidden;    
 }
-
 
 @media (max-width: 768px) {
   .dashboard-container {
@@ -46,6 +43,8 @@
   }
 }
 
+
+
 .dashboard-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -70,7 +69,7 @@
 
 
 .dashboard-grid > * {
-  min-width: 0;     
+  min-width: 0 !important;    
 }
 
 
@@ -84,6 +83,7 @@
   box-sizing: border-box;
 }
 
+
 .grafica canvas {
   width: 100% !important;
   height: 320px !important;
@@ -92,11 +92,22 @@
 }
 
 
+@media (max-width: 800px) {
+  .grafica canvas {
+    max-width: 100% !important;   
+    min-width: 0 !important;      
+    width: 100% !important;       
+    display: block;
+    box-sizing: border-box;
+  }
+}
+
 @media (max-width: 600px) {
   .grafica canvas {
     height: 240px !important;
   }
 }
+
 
 
 .cards {
@@ -126,12 +137,10 @@
   font-weight: 600;
 }
 
-
 .kpi.total     { background: #3f6c6d; }
 .kpi.mensual   { background: #3f51b5; }
 .kpi.activas   { background: #8e24aa; }
 .kpi.proveedor { background: #c2185b; }
-
 
 @media (max-width: 600px) {
   .kpi {
