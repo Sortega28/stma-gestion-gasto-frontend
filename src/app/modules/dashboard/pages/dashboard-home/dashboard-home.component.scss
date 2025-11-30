@@ -1,3 +1,11 @@
+.dashboard-layout .content {
+  padding: 0 !important;        /* quita el padding del layout */
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
+
 .dashboard-container {
   width: 100%;
   padding: 16px;        
