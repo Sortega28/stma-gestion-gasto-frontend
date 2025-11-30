@@ -1,18 +1,14 @@
-/* ================================
-   CONTENEDOR PRINCIPAL
-   ================================ */
+/* ================================ CONTENEDOR PRINCIPAL ================================ */
 .dashboard-container {
   width: 100%;
-  padding: 16px;              /* menos padding en móviles */
+  padding: 16px;
   box-sizing: border-box;
 }
 
-/* ================================
-   TABLA
-   ================================ */
+/* ================================ TABLA ================================ */
 .tabla-wrapper {
   width: 100%;
-  overflow-x: auto;           /* scroll solo si es necesario */
+  overflow-x: auto; /* scroll solo si es necesario */
   border-radius: 8px;
   margin-bottom: 24px;
 }
@@ -21,36 +17,34 @@
   width: 100%;
   border-collapse: collapse;
   background: white;
-  /* quitar min-width fija */
   min-width: auto;
 }
 
 @media (max-width: 600px) {
   .tabla {
-    font-size: 12px;          /* texto más pequeño en móviles */
+    font-size: 12px;
   }
   .mat-header-cell,
   .mat-cell {
-    padding: 8px !important;  /* menos padding */
+    padding: 8px !important;
   }
 }
 
+/* ================================ GRID: GRAFICO + CARDS (CORREGIDO) ================================ */
 .stats {
   display: grid;
-  grid-template-columns: 2fr 1fr; 
+  grid-template-columns: 2fr 1fr; /* <-- LÍNEA CORREGIDA: Layout flexible */
   gap: 24px;
   width: 100%;
 }
 
 @media (max-width: 1000px) {
   .stats {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr; /* Apilar elementos en pantallas más pequeñas */
   }
 }
 
-/* ================================
-   GRÁFICO
-   ================================ */
+/* ================================ GRÁFICO ================================ */
 .grafica {
   background: white;
   padding: 16px;
@@ -79,9 +73,7 @@
   }
 }
 
-/* ================================
-   KPI CARDS
-   ================================ */
+/* ================================ KPI CARDS ================================ */
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -104,7 +96,18 @@
   font-weight: 600;
 }
 
-.kpi.total     { background: #3f6c6d; }
-.kpi.mensual   { background: #3f51b5; }
-.kpi.activas   { background: #8e24aa; }
-.kpi.proveedor { background: #c2185b; }
+.kpi.total {
+  background: #3f6c6d;
+}
+
+.kpi.mensual {
+  background: #3f51b5;
+}
+
+.kpi.activas {
+  background: #8e24aa;
+}
+
+.kpi.proveedor {
+  background: #c2185b;
+}
