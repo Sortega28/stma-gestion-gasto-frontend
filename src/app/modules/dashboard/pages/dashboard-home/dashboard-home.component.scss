@@ -1,25 +1,25 @@
-/* =========================================================
-   CONTENEDOR PRINCIPAL — MISMO MODELO QUE REPORTS
-   ========================================================= */
-
+/* ============================
+   CONTENEDOR PRINCIPAL
+   ============================ */
 .dashboard-container {
-  padding: 24px;
   width: 100%;
+  max-width: 1200px;         /* 🔥 evita que el grid estire el layout */
+  margin: 0 auto;
+  padding: 24px;
   box-sizing: border-box;
   font-family: "IBM Plex Sans", sans-serif;
-  overflow-x: clip; /* evita desplazamientos laterales */
+  overflow-x: clip !important; /* 🔥 evita scroll lateral siempre */
 }
 
-.dashboard-container h2 {
-  margin-bottom: 16px;
+h2 {
   font-weight: 600;
+  margin-bottom: 16px;
 }
 
 
-/* =========================================================
-   TABLA — FULL WIDTH EN DESKTOP / SCROLL EN MÓVIL
-   ========================================================= */
-
+/* ============================
+   TABLA (scroll horizontal en móviles)
+   ============================ */
 .tabla-wrapper {
   width: 100%;
   overflow-x: auto;
@@ -30,14 +30,11 @@
 
 .tabla {
   width: 100%;
-  min-width: 700px; /* permite scroll en pantallas pequeñas */
-  border-collapse: collapse;
   background: white;
   border-radius: 8px;
-}
-
-.mat-elevation-z1 {
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15) !important;
+  border-collapse: collapse;
+  table-layout: auto;
+  min-width: 650px;        /* 🔥 asegura scroll en pantallas pequeñas */
 }
 
 .mat-header-cell,
@@ -45,48 +42,40 @@
   padding: 12px 16px !important;
   font-size: 14px;
   white-space: normal !important;
-  word-break: break-word !important;
+  word-break: break-word;
 }
 
 @media (max-width: 600px) {
   .tabla {
-    min-width: 550px;
+    min-width: 500px;
   }
 }
 
 
-/* =========================================================
-   SECCIÓN ESTADÍSTICAS — GRID FLUIDA COMO REPORTS
-   ========================================================= */
-
+/* ============================
+   GRID DE ESTADÍSTICAS
+   ============================ */
 .stats {
   display: grid;
   grid-template-columns: 1fr 300px;
   gap: 24px;
   width: 100%;
-  min-width: 0;
-}
-
-@media (max-width: 900px) {
-  .stats {
-    grid-template-columns: 1fr !important;
-  }
+  min-width: 0;               /* 🔥 evita overflow interno del grid */
 }
 
 .stats > * {
-  min-width: 0; /* evita desbordes internos */
+  min-width: 0 !important;    /* 🔥 clave para que canvas NO desborde */
 }
 
 
-/* =========================================================
-   GRÁFICO — CONFIGURACIÓN ESTABLE (MISMO MODELO QUE REPORTS)
-   ========================================================= */
-
+/* ============================
+   GRÁFICO
+   ============================ */
 .grafica {
   background: white;
   padding: 16px;
   border-radius: 8px;
-  overflow: hidden;
+  overflow: hidden;           /* 🔥 asegura que el canvas no empuje el layout */
 }
 
 .grafica h3 {
@@ -95,28 +84,29 @@
 
 .grafica canvas {
   width: 100% !important;
-  height: 300px !important;
-  max-height: 300px !important;
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: 260px !important; /* 🔥 tamaño seguro */
   display: block;
 }
 
+/* reduce tamaño en móviles */
 @media (max-width: 700px) {
   .grafica canvas {
-    height: 240px !important;
+    max-height: 220px !important;
   }
 }
 
 @media (max-width: 480px) {
   .grafica canvas {
-    height: 200px !important;
+    max-height: 180px !important;
   }
 }
 
 
-/* =========================================================
-   KPI CARDS — FLUIDAS COMO REPORTS
-   ========================================================= */
-
+/* ============================
+   KPI CARDS
+   ============================ */
 .cards {
   display: grid;
   gap: 16px;
@@ -149,4 +139,3 @@
 .kpi.mensual   { background: #3f51b5; }
 .kpi.activas   { background: #8e24aa; }
 .kpi.proveedor { background: #c2185b; }
-
