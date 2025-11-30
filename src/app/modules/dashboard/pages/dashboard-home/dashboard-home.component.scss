@@ -85,6 +85,12 @@ table mat-icon {
   grid-template-columns: 1fr minmax(260px, 320px);
   gap: 20px;
   width: 100%;
+  min-width: 0;
+}
+
+.chart,
+.cards {
+  min-width: 0;
 }
 
 
