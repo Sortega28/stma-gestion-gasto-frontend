@@ -6,7 +6,7 @@
   color: #161616;
   width: 100%;
   box-sizing: border-box;
-  overflow-x: hidden !important;   /* ← FIX 1 */
+  overflow-x: hidden !important;   
 }
 
 
@@ -57,7 +57,6 @@ h2 {
   }
 }
 
-/* ▼▼ FIX: tabla completamente responsive ▼▼ */
 
 .tabla {
   width: 100%;
@@ -72,14 +71,14 @@ table {
   width: 100% !important;
   border-collapse: collapse;
   background: #ffffff;
-  table-layout: fixed !important;  /* ← FIX 2 */
+  table-layout: fixed !important;  
 }
 
 th.mat-header-cell,
 td.mat-cell {
-  white-space: normal !important;    /* ← FIX 3 */
-  word-break: break-word !important; /* ← FIX 3 */
-  min-width: 0 !important;           /* ← FIX 4 */
+  white-space: normal !important;    
+  word-break: break-word !important; 
+  min-width: 0 !important;           
   padding: 12px;
   font-size: 14px;
 }
@@ -137,7 +136,7 @@ button[mat-stroked-button] {
 }
 
 button[color="primary"] {
-  background: #0f62fe !important;
+  background: #1162FE !important;
   color: white !important;
 }
 
