@@ -35,19 +35,16 @@
   }
 }
 
-/* ================================
-   GRID: GRAFICO + CARDS
-   ================================ */
 .stats {
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 2fr 1fr; 
   gap: 24px;
   width: 100%;
 }
 
 @media (max-width: 1000px) {
   .stats {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; 
   }
 }
 
