@@ -35,9 +35,7 @@ h2 {
   margin-bottom: 14px;
 }
 
-/* ======================================== */
-/* 🚀 FIX MAT-ICON PARA EVITAR OVERFLOW     */
-/* ======================================== */
+
 mat-icon {
   overflow: hidden !important;
   width: 20px !important;
@@ -58,7 +56,6 @@ table mat-icon {
 }
 
 
-/* WRAPPER TABLA */
 .tabla-wrapper {
   width: 100%;
   overflow-x: auto;
@@ -67,7 +64,6 @@ table mat-icon {
   border-radius: 8px;
 }
 
-/* TABLA */
 .tabla {
   width: 100%;
   background: #fff;
@@ -83,15 +79,15 @@ table mat-icon {
   white-space: nowrap;
 }
 
-/* STATS GRID */
+
 .stats {
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 1fr minmax(260px, 320px);
   gap: 20px;
   width: 100%;
 }
 
-/* CHART */
+
 .chart {
   background: white;
   border-radius: 8px;
@@ -109,7 +105,7 @@ table mat-icon {
   display: block;
 }
 
-/* KPIs */
+
 .cards {
   display: grid;
   gap: 12px;
@@ -137,7 +133,7 @@ table mat-icon {
 .kpi.activas { background: #8e24aa; }
 .kpi.proveedor { background: #c2185b; }
 
-/* ------------- BREAKPOINTS ---------------- */
+
 
 @media (max-width: 1200px) {
   .stats {
@@ -162,6 +158,10 @@ table mat-icon {
   .mat-cell {
     font-size: 13px;
     padding: 10px !important;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
   }
 }
 
