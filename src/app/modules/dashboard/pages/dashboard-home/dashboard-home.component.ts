@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { Router } from '@angular/router';
 import { DashboardService, DashboardResumen } from '../../../../dashboard.service';
@@ -10,27 +10,25 @@ Chart.register(...registerables);
   templateUrl: './dashboard-home.component.html',
   styleUrls: ['./dashboard-home.component.scss']
 })
-export class DashboardHomeComponent implements OnInit, AfterViewInit {
+export class DashboardHomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   userName = '';
   loading = true;
 
-  // Datos del dashboard
   totalGasto = 0;
   gastoMensual = 0;
   ordenesActivas = 0;
   topProveedor = '';
   topProveedorImporte = 0;
 
-  // Tabla de últimas órdenes
   displayedColumns = ['estatus', 'solicitante', 'cif', 'proveedor', 'importe'];
   dataSource: any[] = [];
 
-  // Gráfica evolución
   evolucionLabels: string[] = [];
   evolucionDatos: number[] = [];
 
   private chart?: Chart;
+  private resizeListener?: () => void;
 
   constructor(
     private router: Router,
@@ -41,11 +39,26 @@ export class DashboardHomeComponent implements OnInit, AfterViewInit {
     this.cargarDashboard();
   }
 
+  ngAfterViewInit(): void {
+    /** 🔥 Redibuja el gráfico cuando cambia el ancho de la pantalla */
+    this.resizeListener = () => {
+      if (this.chart) this.chart.resize();
+    };
+
+    window.addEventListener('resize', this.resizeListener);
+  }
+
+  ngOnDestroy(): void {
+    /** Evita memory leaks */
+    if (this.resizeListener) {
+      window.removeEventListener('resize', this.resizeListener);
+    }
+  }
+
   cargarDashboard(): void {
     this.dashboardService.getResumen().subscribe({
       next: (res: DashboardResumen) => {
 
-        // Guardar datos
         this.totalGasto = res.totalGasto;
         this.gastoMensual = res.gastoMensual;
         this.ordenesActivas = res.ordenesActivas;
@@ -55,14 +68,13 @@ export class DashboardHomeComponent implements OnInit, AfterViewInit {
 
         this.dataSource = res.ultimasOrdenes;
 
-        // Labels y valores para Chart.js
         this.evolucionLabels = res.evolucionMensual.map(x => x.mes);
         this.evolucionDatos  = res.evolucionMensual.map(x => x.total);
 
         this.loading = false;
 
-        // Una vez cargado el dashboard, dibujamos la gráfica
-        this.dibujarGrafica();
+        /** 🔥 redibuja el gráfico después de que Angular actualice el DOM */
+        setTimeout(() => this.dibujarGrafica(), 50);
       },
       error: (err) => {
         console.error('Error cargando dashboard:', err);
@@ -71,16 +83,12 @@ export class DashboardHomeComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {
-    // La gráfica se dibuja cuando los datos ya están cargados
-  }
-
   dibujarGrafica(): void {
     const canvas = document.getElementById('gastoChart') as HTMLCanvasElement;
     if (!canvas) return;
 
     if (this.chart) {
-      this.chart.destroy(); 
+      this.chart.destroy();
     }
 
     this.chart = new Chart(canvas, {
@@ -98,6 +106,7 @@ export class DashboardHomeComponent implements OnInit, AfterViewInit {
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,   // 🔥 fundamental para evitar overflow
         plugins: { legend: { display: false } },
         scales: { y: { beginAtZero: true } }
       }
