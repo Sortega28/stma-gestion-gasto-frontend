@@ -15,7 +15,7 @@
   z-index: 1000;
 }
 
-/* LOGO */
+
 .logo-container {
   display: flex;
   align-items: center;
@@ -27,7 +27,7 @@
   filter: brightness(95%);
 }
 
-/* USER INFO */
+
 .user-info {
   display: flex;
   align-items: center;
@@ -49,9 +49,9 @@
   transition: 0.2s ease;
 }
 
-/* HAMBURGUESA */
+
 .hamburger-btn {
-  display: none; /* por defecto oculto */
+  display: none; 
   background: none;
   border: none;
   cursor: pointer;
