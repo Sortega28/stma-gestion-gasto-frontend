@@ -1,112 +1,99 @@
 /* =========================================================
-   CONTENEDOR PRINCIPAL
+   CONTENEDOR PRINCIPAL — MISMO MODELO QUE REPORTS
    ========================================================= */
 
-:host {
-  display: block;
-  width: 100%;
-  overflow-x: clip; /* evita desplazamientos */
-  box-sizing: border-box;
+.dashboard-container {
   padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
   font-family: "IBM Plex Sans", sans-serif;
+  overflow-x: clip; /* evita desplazamientos laterales */
 }
 
-
-/* =========================================================
-   TITULOS
-   ========================================================= */
-
-h2 {
+.dashboard-container h2 {
   margin-bottom: 16px;
   font-weight: 600;
-  color: #111;
 }
 
 
 /* =========================================================
-   TABLA (full width en escritorio, scroll en móvil)
-   Misma filosofía que en Reports
+   TABLA — FULL WIDTH EN DESKTOP / SCROLL EN MÓVIL
    ========================================================= */
 
-:host ::ng-deep .tabla-wrapper {
+.tabla-wrapper {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   border-radius: 8px;
-  min-width: 0;
   margin-bottom: 24px;
 }
 
-:host ::ng-deep table.mat-table {
+.tabla {
   width: 100%;
-  min-width: 700px; /* permite scroll en móvil */
+  min-width: 700px; /* permite scroll en pantallas pequeñas */
   border-collapse: collapse;
   background: white;
   border-radius: 8px;
 }
 
-:host ::ng-deep .mat-elevation-z1 {
-  box-shadow: 0 2px 4px rgba(0,0,0,0.12) !important;
+.mat-elevation-z1 {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15) !important;
 }
 
-/* celdas */
-:host ::ng-deep .mat-header-cell,
-:host ::ng-deep .mat-cell {
+.mat-header-cell,
+.mat-cell {
   padding: 12px 16px !important;
   font-size: 14px;
-  white-space: normal !important; 
+  white-space: normal !important;
   word-break: break-word !important;
 }
 
 @media (max-width: 600px) {
-  :host ::ng-deep table.mat-table {
+  .tabla {
     min-width: 550px;
   }
 }
 
 
 /* =========================================================
-   SECCIÓN DE GRAFICO + KPIs
-   Reproducimos la lógica de Reports (grid fluida)
+   SECCIÓN ESTADÍSTICAS — GRID FLUIDA COMO REPORTS
    ========================================================= */
 
-:host ::ng-deep .stats {
+.stats {
   display: grid;
-  grid-template-columns: 1fr minmax(260px, 320px);
+  grid-template-columns: 1fr 300px;
   gap: 24px;
   width: 100%;
-  min-width: 0; /* evita overflow */
+  min-width: 0;
 }
 
-/* en móvil → 1 columna EXACTAMENTE IGUAL QUE REPORTS */
 @media (max-width: 900px) {
-  :host ::ng-deep .stats {
+  .stats {
     grid-template-columns: 1fr !important;
   }
 }
 
-/* evita que hijos se expandan */
-:host ::ng-deep .stats > * {
-  min-width: 0;
+.stats > * {
+  min-width: 0; /* evita desbordes internos */
 }
 
 
 /* =========================================================
-   GRAFICO (Chart.js) — MISMO MODELO QUE REPORTS
+   GRÁFICO — CONFIGURACIÓN ESTABLE (MISMO MODELO QUE REPORTS)
    ========================================================= */
 
-:host ::ng-deep .chart {
+.grafica {
   background: white;
   padding: 16px;
   border-radius: 8px;
-  overflow: hidden; /* evita que canvas se desborde */
+  overflow: hidden;
 }
 
-:host ::ng-deep .chart h3 {
+.grafica h3 {
   margin-bottom: 10px;
 }
 
-:host ::ng-deep .chart canvas {
+.grafica canvas {
   width: 100% !important;
   height: 300px !important;
   max-height: 300px !important;
@@ -114,30 +101,35 @@ h2 {
 }
 
 @media (max-width: 700px) {
-  :host ::ng-deep .chart canvas {
+  .grafica canvas {
     height: 240px !important;
-    max-height: 240px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .grafica canvas {
+    height: 200px !important;
   }
 }
 
 
 /* =========================================================
-   KPI CARDS (igual que Reports)
+   KPI CARDS — FLUIDAS COMO REPORTS
    ========================================================= */
 
-:host ::ng-deep .cards {
+.cards {
   display: grid;
   gap: 16px;
   height: fit-content;
 }
 
 @media (max-width: 700px) {
-  :host ::ng-deep .cards {
+  .cards {
     grid-template-columns: 1fr;
   }
 }
 
-:host ::ng-deep .kpi {
+.kpi {
   color: white;
   border-radius: 10px;
   padding: 16px;
@@ -146,15 +138,15 @@ h2 {
   font-size: 15px;
 }
 
-:host ::ng-deep .kpi span {
+.kpi span {
   display: block;
   margin-top: 6px;
   font-size: 1.15rem;
   font-weight: 600;
 }
 
-:host ::ng-deep .kpi.total     { background: #3f6c6d; }
-:host ::ng-deep .kpi.mensual   { background: #3f51b5; }
-:host ::ng-deep .kpi.activas   { background: #8e24aa; }
-:host ::ng-deep .kpi.proveedor { background: #c2185b; }
+.kpi.total     { background: #3f6c6d; }
+.kpi.mensual   { background: #3f51b5; }
+.kpi.activas   { background: #8e24aa; }
+.kpi.proveedor { background: #c2185b; }
 
