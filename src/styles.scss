@@ -24,3 +24,9 @@ html, body {
 .page-content.dashboard-page {
   padding: 0;
 }
+
+@media (max-width: 768px) {
+  .content-layout {
+    display: block !important;
+  }
+}
