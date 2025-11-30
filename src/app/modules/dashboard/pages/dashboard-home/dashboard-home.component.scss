@@ -8,7 +8,7 @@
 /* ================================ TABLA ================================ */
 .tabla-wrapper {
   width: 100%;
-  overflow-x: auto; /* scroll solo si es necesario */
+  overflow-x: auto;
   border-radius: 8px;
   margin-bottom: 24px;
 }
@@ -30,17 +30,19 @@
   }
 }
 
-/* ================================ GRID: GRAFICO + CARDS (CORREGIDO) ================================ */
+/* ================================ GRID: GRAFICO + CARDS ================================ */
 .stats {
   display: grid;
-  grid-template-columns: 2fr 1fr; /* <-- LÍNEA CORREGIDA: Layout flexible */
+  grid-template-columns: 2fr 1fr; /* Desktop */
   gap: 24px;
   width: 100%;
+  min-width: 0;
 }
 
+/* Tablet horizontal y vertical */
 @media (max-width: 1000px) {
   .stats {
-    grid-template-columns: 1fr; /* Apilar elementos en pantallas más pequeñas */
+    grid-template-columns: 1fr; /* Se apilan debajo */
   }
 }
 
@@ -59,14 +61,17 @@
 .grafica canvas {
   width: 100% !important;
   height: 300px !important;
+  max-width: 100%;
 }
 
+/* Tablet vertical */
 @media (max-width: 700px) {
   .grafica canvas {
     height: 240px !important;
   }
 }
 
+/* Móviles */
 @media (max-width: 480px) {
   .grafica canvas {
     height: 200px !important;
@@ -76,12 +81,12 @@
 /* ================================ KPI CARDS ================================ */
 .cards {
   display: flex;
-  flex-direction: column; /* 🔥 SIEMPRE vertical */
+  flex-direction: column; /* Siempre vertical */
   gap: 16px;
   width: 100%;
 }
 
-/* TARJETAS */
+/* TARJETAS GENERALES */
 .kpi {
   width: 100%;
   color: white;
@@ -92,10 +97,7 @@
   font-size: 16px;
   box-sizing: border-box;
 
-  /* ligero shadow suave */
   box-shadow: 0 3px 8px rgba(0,0,0,0.12);
-
-  /* transición suave */
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -111,7 +113,42 @@
   font-weight: 600;
 }
 
-/* COLORES */
+/* ==================== MODO TABLET ==================== */
+@media (max-width: 700px) {
+  .kpi {
+    padding: 16px 14px;
+    font-size: 15px;
+  }
+
+  .kpi span {
+    font-size: 1.1rem;
+  }
+
+  .cards {
+    gap: 14px;
+  }
+}
+
+/* ==================== MODO MÓVIL COMPACTO ==================== */
+@media (max-width: 480px) {
+
+  .kpi {
+    padding: 14px 12px;     /* Más compacto */
+    font-size: 14px;        /* Texto más pequeño */
+    border-radius: 10px;
+  }
+
+  .kpi span {
+    font-size: 1rem;        /* Evita desbordar */
+    margin-top: 4px;
+  }
+
+  .cards {
+    gap: 12px;
+  }
+}
+
+/* ================================ COLORES ================================ */
 .kpi.total     { background: #3f6c6d; }
 .kpi.mensual   { background: #3f51b5; }
 .kpi.activas   { background: #8e24aa; }
