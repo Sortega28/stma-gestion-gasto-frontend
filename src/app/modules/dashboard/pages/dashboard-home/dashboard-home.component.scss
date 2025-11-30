@@ -1,14 +1,31 @@
 /* =========================================================
-   OVERRIDE GLOBAL PARA QUE NO ROMPA EL RESPONSIVE
+   CONTENEDOR PRINCIPAL
    ========================================================= */
+
 :host {
   display: block;
   width: 100%;
   overflow-x: clip; /* evita desplazamientos */
+  box-sizing: border-box;
+  padding: 24px;
+  font-family: "IBM Plex Sans", sans-serif;
 }
 
+
 /* =========================================================
-   TABLA RESPONSIVA (FULL WIDTH DESKTOP / SCROLL EN MÓVIL)
+   TITULOS
+   ========================================================= */
+
+h2 {
+  margin-bottom: 16px;
+  font-weight: 600;
+  color: #111;
+}
+
+
+/* =========================================================
+   TABLA (full width en escritorio, scroll en móvil)
+   Misma filosofía que en Reports
    ========================================================= */
 
 :host ::ng-deep .tabla-wrapper {
@@ -17,105 +34,107 @@
   overflow-y: hidden;
   border-radius: 8px;
   min-width: 0;
+  margin-bottom: 24px;
 }
 
-:host ::ng-deep .tabla {
+:host ::ng-deep table.mat-table {
   width: 100%;
   min-width: 700px; /* permite scroll en móvil */
   border-collapse: collapse;
-  background: #fff;
+  background: white;
   border-radius: 8px;
 }
 
-/* evitar sombra que sobresale */
 :host ::ng-deep .mat-elevation-z1 {
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15) !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12) !important;
 }
 
+/* celdas */
 :host ::ng-deep .mat-header-cell,
 :host ::ng-deep .mat-cell {
   padding: 12px 16px !important;
   font-size: 14px;
-  white-space: normal !important;
+  white-space: normal !important; 
   word-break: break-word !important;
 }
 
 @media (max-width: 600px) {
-  :host ::ng-deep .tabla {
+  :host ::ng-deep table.mat-table {
     min-width: 550px;
   }
 }
 
-@media (min-width: 1000px) {
-  :host ::ng-deep .tabla {
-    width: 100%;
-    min-width: 100%;
-  }
-}
 
 /* =========================================================
-   GRID DE STATS (SOLUCIÓN DEFINITIVA CON ANGULAR)
+   SECCIÓN DE GRAFICO + KPIs
+   Reproducimos la lógica de Reports (grid fluida)
    ========================================================= */
 
 :host ::ng-deep .stats {
   display: grid;
   grid-template-columns: 1fr minmax(260px, 320px);
-  gap: 20px;
+  gap: 24px;
   width: 100%;
-  min-width: 0;
+  min-width: 0; /* evita overflow */
 }
 
-/* APLICAR SIEMPRE EN MÓVIL (con ng-deep) */
+/* en móvil → 1 columna EXACTAMENTE IGUAL QUE REPORTS */
 @media (max-width: 900px) {
   :host ::ng-deep .stats {
     grid-template-columns: 1fr !important;
   }
 }
 
+/* evita que hijos se expandan */
+:host ::ng-deep .stats > * {
+  min-width: 0;
+}
+
+
 /* =========================================================
-   CHART.JS – ELIMINAR DESBORDAMIENTO EN MÓVIL
+   GRAFICO (Chart.js) — MISMO MODELO QUE REPORTS
    ========================================================= */
 
 :host ::ng-deep .chart {
   background: white;
-  border-radius: 8px;
   padding: 16px;
-  overflow-x: hidden; /* EVITA que el canvas sobresalga */
-  min-width: 0;
+  border-radius: 8px;
+  overflow: hidden; /* evita que canvas se desborde */
+}
+
+:host ::ng-deep .chart h3 {
+  margin-bottom: 10px;
 }
 
 :host ::ng-deep .chart canvas {
   width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
+  height: 300px !important;
+  max-height: 300px !important;
   display: block;
-  box-sizing: border-box !important;
 }
 
-/* Chart más pequeño en móvil */
 @media (max-width: 700px) {
-  :host ::ng-deep .chart {
-    padding: 12px;
-  }
   :host ::ng-deep .chart canvas {
-    height: 260px !important;
+    height: 240px !important;
+    max-height: 240px !important;
   }
 }
 
-@media (max-width: 480px) {
-  :host ::ng-deep .chart canvas {
-    height: 220px !important;
-  }
-}
 
 /* =========================================================
-   KPI CARDS
+   KPI CARDS (igual que Reports)
    ========================================================= */
 
 :host ::ng-deep .cards {
   display: grid;
-  gap: 12px;
+  gap: 16px;
   height: fit-content;
+}
+
+@media (max-width: 700px) {
+  :host ::ng-deep .cards {
+    grid-template-columns: 1fr;
+  }
 }
 
 :host ::ng-deep .kpi {
@@ -138,11 +157,4 @@
 :host ::ng-deep .kpi.mensual   { background: #3f51b5; }
 :host ::ng-deep .kpi.activas   { background: #8e24aa; }
 :host ::ng-deep .kpi.proveedor { background: #c2185b; }
-
-/* En móvil, cards apiladas */
-@media (max-width: 700px) {
-  :host ::ng-deep .cards {
-    grid-template-columns: 1fr;
-  }
-}
 
