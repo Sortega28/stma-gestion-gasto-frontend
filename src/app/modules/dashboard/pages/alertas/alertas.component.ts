@@ -24,7 +24,7 @@ export class AlertasComponent implements OnInit, OnDestroy {
   cols: string[] = [
     'proveedor',
     'objeto',
-    'importe',
+    'importe_objeto',
     'umbral',
     'tipo_alerta',
     'acciones'
