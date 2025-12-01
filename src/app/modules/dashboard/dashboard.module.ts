@@ -22,7 +22,7 @@ import { LayoutModule } from '../../layout/layout.module';
 // Routing
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
-// Component ONLY belonging to dashboard layout
+// Component Layout
 import { DashboardLayoutComponent } from './pages/layout/dashboard-layout/dashboard-layout.component';
 
 // HTTP

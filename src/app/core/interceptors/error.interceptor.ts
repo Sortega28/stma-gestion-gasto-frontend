@@ -18,12 +18,10 @@ export class ErrorInterceptor implements HttpInterceptor {
 
         if (error.status === 401) {
           console.warn('Error 401 (No autenticado)');
-          // ❗ NO NAVEGAR AQUÍ
         }
 
         else if (error.status === 403) {
           console.warn('Error 403 (Acceso denegado)');
-          // ❗ NO NAVEGAR AQUÍ
         }
 
         else if (error.status >= 500) {

@@ -36,7 +36,6 @@ export class OrdersComponent implements OnInit {
 
   seleccionadas: number[] = [];
 
-  //Mapeado
 
   estadoMap: any = {
   'PENDIENTE': 100,

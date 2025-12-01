@@ -22,7 +22,7 @@ export class AuthEffects {
           map((response) =>
             AuthActions.loginSuccess({
               user: response.user,
-              access_token: response.access_token,  // <--- CORRECTO
+              access_token: response.access_token,  
               role: response.user.role
             })
           ),
@@ -49,7 +49,7 @@ export class AuthEffects {
       this.actions$.pipe(
         ofType(AuthActions.loginSuccess),
         tap(({ user, access_token, role }) => {
-          localStorage.setItem('access_token', access_token); // <--- CORRECTO
+          localStorage.setItem('access_token', access_token); 
           localStorage.setItem('role', role);
           localStorage.setItem('user', JSON.stringify(user));
 

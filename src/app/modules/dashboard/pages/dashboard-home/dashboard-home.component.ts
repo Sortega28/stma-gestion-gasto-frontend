@@ -39,7 +39,6 @@ export class DashboardHomeComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   ngAfterViewInit(): void {
-    /** Redibuja el gráfico en cambio de tamaño */
     this.resizeListener = () => {
       if (this.chart) this.chart.resize();
     };
