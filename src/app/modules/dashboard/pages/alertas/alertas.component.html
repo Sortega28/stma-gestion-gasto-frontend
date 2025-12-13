@@ -48,16 +48,16 @@
 
   </div>
 
-  <div *ngIf="loading" class="loading">Cargando alertas...</div>
+  <div *ngIf="loading" class="loading">
+    <mat-spinner diameter="36"></mat-spinner>
+    <span>Cargando alertas…</span>
+  </div>
 
   <div class="tabla" *ngIf="!loading">
 
     <div class="tabla-wrapper">
 
-      <table 
-        mat-table 
-        [dataSource]="dataSource" 
-        class="mat-elevation-z2">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
 
         <!-- PROVEEDOR -->
         <ng-container matColumnDef="proveedor">
@@ -75,13 +75,13 @@
           </td>
         </ng-container>
 
-        <!-- ACUMULADO POR OBJETO -->
+        <!-- ACUMULADO -->
         <ng-container matColumnDef="importe_objeto">
           <th mat-header-cell *matHeaderCellDef class="col-importe">
             Acumulado anual (por objeto)
           </th>
           <td mat-cell *matCellDef="let a" class="col-importe">
-            {{ a.gasto_anual | currency:'EUR' }}
+            {{ a.gasto_anual_fmt }}
           </td>
         </ng-container>
 
@@ -89,7 +89,7 @@
         <ng-container matColumnDef="umbral">
           <th mat-header-cell *matHeaderCellDef class="col-umbral">Umbral</th>
           <td mat-cell *matCellDef="let a" class="col-umbral">
-            {{ a.umbral | currency:'EUR' }}
+            {{ a.umbral_fmt }}
           </td>
         </ng-container>
 
@@ -131,19 +131,13 @@
 
   <div class="paginacion" *ngIf="totalPages > 1">
     
-    <button 
-      mat-stroked-button 
-      (click)="anterior()" 
-      [disabled]="page === 1">
+    <button mat-stroked-button (click)="anterior()" [disabled]="page === 1">
       ◀ Anterior
     </button>
 
     <span>Página {{ page }} de {{ totalPages }}</span>
 
-    <button 
-      mat-stroked-button 
-      (click)="siguiente()"
-      [disabled]="page >= totalPages">
+    <button mat-stroked-button (click)="siguiente()" [disabled]="page >= totalPages">
       Siguiente ▶
     </button>
 

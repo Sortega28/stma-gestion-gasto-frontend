@@ -13,7 +13,7 @@ export class NewOrderComponent {
   form: FormGroup;
 
   proyectos = ['Proyecto A', 'Proyecto B', 'Proyecto C'];
-  objetos = ['Material', 'Servicio', 'Obra'];
+  objetos = ['Suministro', 'Servicio', 'Obra'];
 
  
   tiposGasto = [

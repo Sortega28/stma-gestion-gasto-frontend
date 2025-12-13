@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
+} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { HttpClient } from '@angular/common/http';
 import { RoleService } from '../../../auth/core/services/role.service';
@@ -10,7 +16,8 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-alertas',
   templateUrl: './alertas.component.html',
-  styleUrls: ['./alertas.component.scss']
+  styleUrls: ['./alertas.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush // 🔑 CLAVE
 })
 export class AlertasComponent implements OnInit, OnDestroy {
 
@@ -44,7 +51,8 @@ export class AlertasComponent implements OnInit, OnDestroy {
   constructor(
     private http: HttpClient,
     public roleService: RoleService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private cdr: ChangeDetectorRef // 🔑 control manual
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +61,7 @@ export class AlertasComponent implements OnInit, OnDestroy {
 
   regenerarAlertas() {
     this.loading = true;
+    this.cdr.markForCheck();
 
     this.http.post(`${this.apiUrl}/alertas/generar`, {})
       .pipe(takeUntil(this.destroy$))
@@ -67,18 +76,15 @@ export class AlertasComponent implements OnInit, OnDestroy {
         },
         error: err => {
           console.error('Error regenerando alertas:', err);
-          this.snackBar.open(
-            'Error regenerando alertas',
-            'Cerrar',
-            { duration: 3000 }
-          );
           this.loading = false;
+          this.cdr.markForCheck();
         }
       });
   }
 
   cargarAlertas() {
     this.loading = true;
+    this.cdr.markForCheck();
 
     const params: any = {
       page: this.page,
@@ -93,18 +99,29 @@ export class AlertasComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: resp => {
-          this.dataSource.data = resp.data;
+
+          // 🔑 PREPROCESADO (evita pipes en HTML)
+          const data = resp.data.map((a: any) => ({
+            ...a,
+            gasto_anual_fmt: new Intl.NumberFormat('es-ES', {
+              style: 'currency',
+              currency: 'EUR'
+            }).format(a.gasto_anual),
+            umbral_fmt: new Intl.NumberFormat('es-ES', {
+              style: 'currency',
+              currency: 'EUR'
+            }).format(a.umbral)
+          }));
+
+          this.dataSource.data = data;
           this.total = resp.total;
           this.loading = false;
+          this.cdr.markForCheck();
         },
         error: err => {
           console.error('Error cargando alertas:', err);
-          this.snackBar.open(
-            'Error al cargar alertas',
-            'Cerrar',
-            { duration: 3000 }
-          );
           this.loading = false;
+          this.cdr.markForCheck();
         }
       });
   }
@@ -113,8 +130,6 @@ export class AlertasComponent implements OnInit, OnDestroy {
     this.page = 1;
     this.cargarAlertas();
   }
-
-
 
   get totalPages() {
     return Math.ceil(this.total / this.perPage);
@@ -134,7 +149,6 @@ export class AlertasComponent implements OnInit, OnDestroy {
     }
   }
 
-
   marcarRevisada(id: number) {
     this.http.patch(`${this.apiUrl}/alertas/${id}/estado`, { revisada: true })
       .pipe(takeUntil(this.destroy$))
@@ -145,18 +159,17 @@ export class AlertasComponent implements OnInit, OnDestroy {
             'Cerrar',
             { duration: 2500 }
           );
-          this.cargarAlertas();
-        },
-        error: () => {
-          this.snackBar.open(
-            'Error al actualizar la alerta',
-            'Cerrar',
-            { duration: 2500 }
-          );
+
+          // 🔑 Actualización local (NO recargar todo)
+          const row = this.dataSource.data.find(a => a.id === id);
+          if (row) {
+            row.revisada = true;
+            this.dataSource.data = [...this.dataSource.data];
+            this.cdr.markForCheck();
+          }
         }
       });
   }
-
 
   ngOnDestroy() {
     this.destroy$.next();
