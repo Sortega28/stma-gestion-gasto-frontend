@@ -1,6 +1,5 @@
 <div class="contenedor">
 
-
   <div class="cabecera-acciones">
 
     <!-- EDITAR (solo auditor/admin) -->
@@ -10,7 +9,7 @@
       <mat-icon>edit</mat-icon> Editar
     </button>
 
-    <!-- CANCELAR EDICIÓN (solo auditor/admin) -->
+    <!-- CANCELAR EDICIÓN -->
     <button mat-button color="warn"
             *ngIf="modoEdicion && roleService.puedeEditarSolicitud()"
             (click)="cancelarEdicion()">
@@ -19,28 +18,28 @@
 
   </div>
 
- 
+
   <form class="form-grid">
 
     <!-- Nº ORDEN -->
     <mat-form-field appearance="outline">
       <mat-label>Nº orden de gasto</mat-label>
       <input matInput [(ngModel)]="orden.num_OG" name="num_OG"
-             [disabled]="!modoEdicion || !roleService.puedeEditarSolicitud()">
+             [disabled]="!modoEdicion">
     </mat-form-field>
 
     <!-- SOLICITANTE -->
     <mat-form-field appearance="outline">
       <mat-label>Solicitante</mat-label>
       <input matInput [(ngModel)]="orden.usuario" name="usuario"
-             [disabled]="!modoEdicion || !roleService.puedeEditarSolicitud()">
+             [disabled]="!modoEdicion">
     </mat-form-field>
 
     <!-- PROYECTO -->
     <mat-form-field appearance="outline">
       <mat-label>Proyecto*</mat-label>
       <mat-select [(ngModel)]="orden.codigo_proyecto" name="codigo_proyecto"
-                  [disabled]="!modoEdicion || !roleService.puedeEditarSolicitud()">
+                  [disabled]="!modoEdicion">
         <mat-option *ngFor="let p of proyectos" [value]="p">
           {{ p }}
         </mat-option>
@@ -51,53 +50,55 @@
     <mat-form-field appearance="outline">
       <mat-label>CIF*</mat-label>
       <input matInput [(ngModel)]="orden.cif_prov_final" name="cif_prov_final"
-             [disabled]="!modoEdicion || !roleService.puedeEditarSolicitud()">
+             [disabled]="!modoEdicion">
     </mat-form-field>
 
     <!-- PROVEEDOR -->
     <mat-form-field appearance="outline">
       <mat-label>Proveedor*</mat-label>
       <input matInput [(ngModel)]="orden.nombre_prov_final" name="nombre_prov_final"
-             [disabled]="!modoEdicion || !roleService.puedeEditarSolicitud()">
+             [disabled]="!modoEdicion">
     </mat-form-field>
 
     <!-- CONCEPTO -->
     <mat-form-field appearance="outline">
       <mat-label>Concepto*</mat-label>
       <input matInput [(ngModel)]="orden.concepto" name="concepto"
-             [disabled]="!modoEdicion || !roleService.puedeEditarSolicitud()">
+             [disabled]="!modoEdicion">
     </mat-form-field>
 
     <!-- IMPORTE -->
     <mat-form-field appearance="outline">
       <mat-label>Importe*</mat-label>
       <input matInput type="number" [(ngModel)]="orden.importe" name="importe"
-             [disabled]="!modoEdicion || !roleService.puedeEditarSolicitud()">
+             [disabled]="!modoEdicion">
     </mat-form-field>
 
     <!-- OBJETO -->
     <mat-form-field appearance="outline">
       <mat-label>Objeto*</mat-label>
       <mat-select [(ngModel)]="orden.objeto" name="objeto"
-                  [disabled]="!modoEdicion || !roleService.puedeEditarSolicitud()">
+                  [disabled]="!modoEdicion">
         <mat-option *ngFor="let o of objetos" [value]="o">
           {{ o }}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
-    <!-- OBSERVACIONES -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Observaciones</mat-label>
-      <textarea matInput rows="4"
-                [(ngModel)]="orden.observaciones" name="observaciones"
-                [disabled]="!modoEdicion || !roleService.puedeEditarSolicitud()">
-      </textarea>
+    <!-- TIPO DE GASTO (OBLIGATORIO) -->
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo de gasto*</mat-label>
+      <mat-select [(ngModel)]="orden.idtipo_gasto" name="idtipo_gasto"
+                  [disabled]="!modoEdicion">
+        <mat-option *ngFor="let t of tiposGasto" [value]="t.id">
+          {{ t.nombre }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
   </form>
 
-  <!-- GUARDAR CAMBIOS (solo auditor/admin) -->
+  <!-- GUARDAR CAMBIOS -->
   <div class="acciones-guardar"
        *ngIf="modoEdicion && roleService.puedeEditarSolicitud()">
 

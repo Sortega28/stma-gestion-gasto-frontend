@@ -4,23 +4,10 @@
 
   <form [formGroup]="form" class="form-grid">
 
-    <!-- Nº orden -->
-    <mat-form-field appearance="outline">
-      <mat-label>Nº orden de gasto</mat-label>
-      <input matInput formControlName="numero" readonly>
-    </mat-form-field>
-
-    <!-- Solicitante -->
-    <mat-form-field appearance="outline">
-      <mat-label>Solicitante</mat-label>
-      <input matInput formControlName="solicitante"
-             [disabled]="!roleService.puedeCrearOrdenes()">
-    </mat-form-field>
-
     <!-- Proyecto -->
     <mat-form-field appearance="outline">
-      <mat-label>Proyecto*</mat-label>
-      <mat-select formControlName="proyecto"
+      <mat-label>Proyecto</mat-label>
+      <mat-select formControlName="codigo_proyecto"
                   [disabled]="!roleService.puedeCrearOrdenes()">
         <mat-option *ngFor="let p of proyectos" [value]="p">{{ p }}</mat-option>
       </mat-select>
@@ -29,20 +16,20 @@
     <!-- CIF -->
     <mat-form-field appearance="outline">
       <mat-label>CIF*</mat-label>
-      <input matInput formControlName="cif"
+      <input matInput formControlName="cif_prov_final"
              [disabled]="!roleService.puedeCrearOrdenes()">
     </mat-form-field>
 
     <!-- Proveedor -->
     <mat-form-field appearance="outline">
       <mat-label>Proveedor*</mat-label>
-      <input matInput formControlName="proveedor"
+      <input matInput formControlName="nombre_prov_final"
              [disabled]="!roleService.puedeCrearOrdenes()">
     </mat-form-field>
 
     <!-- Concepto -->
     <mat-form-field appearance="outline">
-      <mat-label>Concepto*</mat-label>
+      <mat-label>Concepto</mat-label>
       <input matInput formControlName="concepto"
              [disabled]="!roleService.puedeCrearOrdenes()">
     </mat-form-field>
@@ -50,7 +37,7 @@
     <!-- Importe -->
     <mat-form-field appearance="outline">
       <mat-label>Importe*</mat-label>
-      <input matInput formControlName="importe"
+      <input matInput type="number" formControlName="importe"
              [disabled]="!roleService.puedeCrearOrdenes()">
     </mat-form-field>
 
@@ -63,12 +50,17 @@
       </mat-select>
     </mat-form-field>
 
-    <!-- Observaciones -->
-    <div class="observaciones-wrapper">
-      <label>Observaciones</label>
-      <textarea formControlName="observaciones" maxlength="100"
-                [disabled]="!roleService.puedeCrearOrdenes()"></textarea>
-    </div>
+    <!-- Tipo de gasto -->
+<mat-form-field appearance="outline">
+  <mat-label>Tipo de gasto*</mat-label>
+  <mat-select formControlName="idtipo_gasto"
+              [disabled]="!roleService.puedeCrearOrdenes()">
+    <mat-option *ngFor="let t of tiposGasto" [value]="t.id">
+      {{ t.nombre }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
 
   </form>
 

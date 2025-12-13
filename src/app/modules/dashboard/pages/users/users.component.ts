@@ -10,7 +10,7 @@ export class UsersComponent implements OnInit {
 
   roles = [
     { nombre: 'Administrador', value: 'admin' },
-    { nombre: 'Gestor', value: 'auditor' },
+    { nombre: 'Auditor', value: 'auditor' },
     { nombre: 'Consulta', value: 'user' }
   ];
 
@@ -32,7 +32,7 @@ export class UsersComponent implements OnInit {
     this.cargarUsuarios();
   }
 
-  // Usuario vacío
+
   getUsuarioVacio(): Usuario {
     return {
       id: 0,
@@ -46,7 +46,6 @@ export class UsersComponent implements OnInit {
     };
   }
 
-
   cargarUsuarios(page: number = 1) {
 
     const params: any = { page, perPage: this.perPage };
@@ -58,16 +57,8 @@ export class UsersComponent implements OnInit {
     this.usersService.getUsuarios(params).subscribe({
       next: (resp: UsersResponse) => {
 
-        this.usuarios = resp.data.map(u => {
-          const partes = u.name.trim().split(' ');
-          return {
-            ...u,
-            nombre: partes[0] || '',
-            apellidos: partes.slice(1).join(' '),
-            rol: u.role,     
-            role: u.role     
-          };
-        });
+
+        this.usuarios = resp.data;
 
         this.page = resp.current_page;
         this.lastPage = resp.last_page;
@@ -93,8 +84,7 @@ export class UsersComponent implements OnInit {
   editarUsuario(usuario: Usuario) {
     this.usuarioSeleccionado = { 
       ...usuario,
-      rol: usuario.role,   
-      role: usuario.role   
+      role: usuario.role
     };
   }
 
@@ -112,17 +102,12 @@ export class UsersComponent implements OnInit {
 
   crearUsuario() {
 
-    let nombre = (this.usuarioSeleccionado.nombre || '').trim();
-    let apellidos = (this.usuarioSeleccionado.apellidos || '').trim();
-
-    const nameCompleto = apellidos !== ''
-      ? `${nombre} ${apellidos}` : nombre;
-
     const payload = {
-      name: nameCompleto.trim(),
+      nombre: this.usuarioSeleccionado.nombre,
+      apellidos: this.usuarioSeleccionado.apellidos,
       email: this.usuarioSeleccionado.email,
       password: this.usuarioSeleccionado.password,
-      role: this.usuarioSeleccionado.rol  
+      role: this.usuarioSeleccionado.role
     };
 
     this.usersService.crearUsuario(payload).subscribe({
@@ -137,21 +122,11 @@ export class UsersComponent implements OnInit {
 
   actualizarUsuario() {
 
-    let nombre = (this.usuarioSeleccionado.nombre || '').trim();
-    let apellidos = (this.usuarioSeleccionado.apellidos || '').trim();
-
-    if (!nombre) {
-      nombre = this.usuarioSeleccionado.name.split(' ')[0];
-    }
-
-    const nameCompleto = apellidos !== ''
-      ? `${nombre} ${apellidos}`
-      : nombre;
-
     const payload: any = {
-      name: nameCompleto.trim(),
+      nombre: this.usuarioSeleccionado.nombre,
+      apellidos: this.usuarioSeleccionado.apellidos,
       email: this.usuarioSeleccionado.email,
-      role: this.usuarioSeleccionado.rol || this.usuarioSeleccionado.role 
+      role: this.usuarioSeleccionado.role
     };
 
     if (this.usuarioSeleccionado.password?.trim()) {
