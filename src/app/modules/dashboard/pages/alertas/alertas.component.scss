@@ -6,9 +6,8 @@
   color: #161616;
   width: 100%;
   box-sizing: border-box;
-  overflow-x: hidden !important;   
+  overflow-x: visible; 
 }
-
 
 h2 {
   margin-bottom: 24px;
@@ -17,12 +16,10 @@ h2 {
   color: #161616;
 }
 
-
 .regenerar-wrapper {
   margin-bottom: 20px;
   display: flex;
 }
-
 
 .loading {
   font-size: 16px;
@@ -63,24 +60,28 @@ h2 {
   background: #ffffff;
   border-radius: 8px;
   margin-top: 10px;
-  overflow: hidden;          
   box-sizing: border-box;
+}
+
+.tabla-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 table {
   width: 100% !important;
   border-collapse: collapse;
   background: #ffffff;
-  table-layout: fixed !important;  
 }
+
 
 th.mat-header-cell,
 td.mat-cell {
-  white-space: normal !important;    
-  word-break: break-word !important; 
-  min-width: 0 !important;           
   padding: 12px;
   font-size: 14px;
+  white-space: nowrap;   // 🔥 evita cortes raros
 }
 
 .mat-header-cell {
@@ -117,12 +118,10 @@ tr.mat-row:hover {
   font-weight: 600;
 }
 
-
 button {
-  white-space: normal !important;
+  white-space: nowrap;
   max-width: 100%;
 }
-
 
 button[mat-button],
 button[mat-raised-button],
@@ -132,7 +131,6 @@ button[mat-stroked-button] {
   border-radius: 6px;
   padding: 6px 14px;
   font-weight: 500;
-  letter-spacing: 0.2px;
 }
 
 button[color="primary"] {
@@ -144,11 +142,6 @@ button[color="primary"]:hover {
   background: #0353e9 !important;
 }
 
-button[color="accent"] {
-  background: #6f6f6f !important;
-  color: white !important;
-}
-
 button[mat-stroked-button] {
   border-color: #8d8d8d !important;
   color: #161616 !important;
@@ -157,7 +150,6 @@ button[mat-stroked-button] {
 button[mat-stroked-button]:hover {
   background: #e5e5e5 !important;
 }
-
 
 .paginacion {
   margin-top: 24px;
@@ -176,6 +168,7 @@ button[mat-stroked-button]:hover {
   }
 }
 
+
 @media (max-width: 1100px) {
   .filtros {
     grid-template-columns: repeat(3, 1fr);
@@ -189,6 +182,23 @@ button[mat-stroked-button]:hover {
 
   .btn-buscar {
     grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  table {
+    min-width: 720px; 
+  }
+
+  th.mat-header-cell,
+  td.mat-cell {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 4px 10px;
   }
 }
 
@@ -211,16 +221,6 @@ button[mat-stroked-button]:hover {
     font-size: 14px;
   }
 
-  table {
-    font-size: 13px;
-  }
-
-  th.mat-header-cell,
-  td.mat-cell {
-    padding: 10px;
-    font-size: 13px;
-  }
-
   .paginacion {
     flex-direction: column;
     gap: 10px;
@@ -234,11 +234,6 @@ button[mat-stroked-button]:hover {
 @media (max-width: 480px) {
   th.mat-header-cell,
   td.mat-cell {
-    font-size: 12px;
-  }
-
-  .btn-buscar {
-    height: 46px;
-    font-size: 13px;
+    font-size: 11px;
   }
 }
