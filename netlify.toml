@@ -1,6 +1,6 @@
 [build]
   command = "npm install && npm run build -- --configuration production"
-  publish = "dist/frontend-tfm"
+  publish = "dist/frontend-tfm/browser"
 
 [build.environment]
   NODE_VERSION = "18"
