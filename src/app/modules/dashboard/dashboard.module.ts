@@ -15,6 +15,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 // Layout
 import { LayoutModule } from '../../layout/layout.module';
@@ -56,6 +58,7 @@ import { SharedModule } from '../../shared/shared.module';
     MatButtonModule,
     MatNativeDateModule,
     MatDividerModule,
+    MatProgressSpinnerModule,
 
     // HTTP
     HttpClientModule
