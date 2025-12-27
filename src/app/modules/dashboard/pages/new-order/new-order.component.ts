@@ -52,7 +52,7 @@ export class NewOrderComponent {
       concepto: [''],
       importe: ['', Validators.required],
       objeto: ['', Validators.required],
-      idtipo_gasto: ['', Validators.required] // obligatorio
+      idtipo_gasto: ['', Validators.required] 
     });
   }
 

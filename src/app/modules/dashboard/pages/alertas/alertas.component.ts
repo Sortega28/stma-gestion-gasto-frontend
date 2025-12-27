@@ -17,7 +17,7 @@ import { takeUntil } from 'rxjs/operators';
   selector: 'app-alertas',
   templateUrl: './alertas.component.html',
   styleUrls: ['./alertas.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush // 🔑 CLAVE
+  changeDetection: ChangeDetectionStrategy.OnPush 
 })
 export class AlertasComponent implements OnInit, OnDestroy {
 
@@ -52,7 +52,7 @@ export class AlertasComponent implements OnInit, OnDestroy {
     private http: HttpClient,
     public roleService: RoleService,
     private snackBar: MatSnackBar,
-    private cdr: ChangeDetectorRef // 🔑 control manual
+    private cdr: ChangeDetectorRef 
   ) {}
 
   ngOnInit(): void {
@@ -100,7 +100,7 @@ export class AlertasComponent implements OnInit, OnDestroy {
       .subscribe({
         next: resp => {
 
-          // 🔑 PREPROCESADO (evita pipes en HTML)
+          // Se evitan pipe en HTML para mejorar rendimiento
           const data = resp.data.map((a: any) => ({
             ...a,
             gasto_anual_fmt: new Intl.NumberFormat('es-ES', {
@@ -160,7 +160,7 @@ export class AlertasComponent implements OnInit, OnDestroy {
             { duration: 2500 }
           );
 
-          // 🔑 Actualización local (NO recargar todo)
+          // Actualización local (NO recargar todo)
           const row = this.dataSource.data.find(a => a.id === id);
           if (row) {
             row.revisada = true;

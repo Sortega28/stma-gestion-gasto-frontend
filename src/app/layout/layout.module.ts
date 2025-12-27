@@ -27,8 +27,6 @@ import { LayoutRoutingModule } from './layout-routing.module';
     CommonModule,
     RouterModule,
     MatIconModule,
-
-    // ⭐ CLAVE: ESTO FALTABA
     LayoutRoutingModule
   ],
   exports: [
